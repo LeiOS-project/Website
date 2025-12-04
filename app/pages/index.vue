@@ -868,4 +868,122 @@ const sourceLinks = [
         flex-direction: row;
     }
 }
+
+/* ===========================
+   Scrollbar Styles
+   =========================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(15 23 42);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(56 189 248 / 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(56 189 248 / 0.5);
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(56 189 248 / 0.3) rgb(15 23 42);
+}
+
+/* ===========================
+   Utility Classes
+   =========================== */
+
+/* Gradient text */
+.gradient-text {
+    background: linear-gradient(135deg, rgb(56 189 248), rgb(125 211 252));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Hero background glow effect */
+.hero-glow {
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(56, 189, 248, 0.15), transparent);
+}
+
+/* Glass effect */
+.glass {
+    background: rgb(15 23 42 / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgb(30 41 59);
+}
+
+/* Card hover effect */
+.card-hover {
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    border-color: rgb(56 189 248 / 0.5);
+}
+
+/* Glow effect on hover */
+.glow-hover {
+    transition: box-shadow 0.3s ease;
+}
+
+.glow-hover:hover {
+    box-shadow: 0 0 20px rgb(56 189 248 / 0.3);
+}
+
+/* ===========================
+   Animation Keyframes
+   =========================== */
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgb(56 189 248 / 0.2);
+    }
+    50% {
+        box-shadow: 0 0 40px rgb(56 189 248 / 0.4);
+    }
+}
+
+/* Animation utility classes */
+.animate-fade-in {
+    animation: fade-in 0.6s ease-out;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
 </style>

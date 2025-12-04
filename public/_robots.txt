@@ -1,9 +1,0 @@
-# https://www.robotstxt.org/robotstxt.html
-User-Agent: *
-Allow: /
-
-# Sitemap
-Sitemap: https://leios.dev/sitemap.xml
-
-# Crawl-Delay für höfliches Crawling
-Crawl-delay: 1

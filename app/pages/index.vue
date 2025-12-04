@@ -4,7 +4,47 @@ useSeoMeta({
     description: 'LeiOS is a Debian-based operating system focused on stability, great performance, and an exceptional out-of-box experience. Perfect for developers and everyday users alike.',
     ogTitle: 'LeiOS - Debian-based OS for Developers',
     ogDescription: 'A stable, performant Linux distribution with a focus on developer experience and ease of use.',
-    ogType: 'website'
+    ogType: 'website',
+    ogUrl: 'https://leios.dev',
+    ogSiteName: 'LeiOS',
+    ogLocale: 'en_US',
+    ogImage: 'https://leios.dev/og-image.png',
+    twitterCard: 'summary_large_image',
+    twitterTitle: 'LeiOS - Debian-based OS for Developers',
+    twitterDescription: 'A stable, performant Linux distribution with a focus on developer experience and ease of use.',
+    twitterImage: 'https://leios.dev/og-image.png',
+})
+
+// Structured Data (JSON-LD) für bessere Suchmaschinenindexierung
+useHead({
+    script: [
+        {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'LeiOS',
+                applicationCategory: 'OperatingSystem',
+                operatingSystem: 'Linux',
+                description: 'LeiOS is a Debian-based operating system focused on stability, great performance, and an exceptional out-of-box experience.',
+                url: 'https://leios.dev',
+                offers: {
+                    '@type': 'Offer',
+                    price: '0',
+                    priceCurrency: 'USD'
+                },
+                author: {
+                    '@type': 'Organization',
+                    name: 'LeiOS Project',
+                    url: 'https://leios.dev'
+                }
+            })
+        }
+    ]
+})
+
+definePageMeta({
+    layout: 'default'
 })
 
 const features = [

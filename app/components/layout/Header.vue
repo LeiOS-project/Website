@@ -1,12 +1,26 @@
 <script setup lang="ts">
+import type { NavigationMenuItem } from '@nuxt/ui'
 import LeiOSLogo from '../img/LeiOSLogo.vue';
 
-const links = [
-    { label: 'Features', to: '#features' },
-    { label: 'Download', to: '#download' },
-    { label: 'Community', to: '#community' },
-    { label: 'Blog', to: 'https://blog.leicraftmc.de/tag/leios/', external: true }
-]
+const links = computed<NavigationMenuItem[]>(() => [
+    {
+        label: 'Features',
+        to: '#features'
+    },
+    {
+        label: 'Download',
+        to: '#download'
+    },
+    {
+        label: 'Community',
+        to: '#community'
+    },
+    {
+        label: 'Blog',
+        to: 'https://blog.leicraftmc.de/tag/leios/',
+        target: '_blank'
+    }
+])
 
 const socialLinks = [
     { icon: 'i-lucide-github', to: 'https://github.com/LeiOS-project', label: 'GitHub' },
@@ -15,67 +29,37 @@ const socialLinks = [
 </script>
 
 <template>
-    <UHeader class="app-header">
-        <template #left>
-            <NuxtLink to="/" class="logo-link">
+    <UHeader class="backdrop-blur-xl">
+        <template #title>
+            <NuxtLink to="/" class="flex items-center gap-2">
                 <LeiOSLogo class="h-6 w-auto" />
             </NuxtLink>
         </template>
 
-        <UNavigationMenu :items="links.map(link => ({
-            label: link.label,
-            to: link.to,
-            target: link.external ? '_blank' : undefined
-        }))" class="nav-menu" />
+        <UNavigationMenu :items="links" />
+
+        <template #body>
+            <UNavigationMenu :items="links" orientation="vertical" class="w-full" />
+        </template>
 
         <template #right>
-            <div class="header-actions">
-                <UButton v-for="social in socialLinks" :key="social.label" :to="social.to" target="_blank"
-                    :icon="social.icon" color="neutral" variant="ghost" size="lg" :aria-label="social.label"
-                    class="social-btn" />
-                <UButton to="#download" color="primary" variant="solid" class="download-btn">
+            <div class="flex items-center gap-2">
+                <UButton 
+                    v-for="social in socialLinks" 
+                    :key="social.label" 
+                    :to="social.to" 
+                    target="_blank"
+                    :icon="social.icon" 
+                    color="neutral" 
+                    variant="ghost" 
+                    size="lg" 
+                    :aria-label="social.label"
+                    class="hover:scale-110 transition-transform duration-200" 
+                />
+                <UButton to="#download" color="primary" variant="solid" class="font-medium hidden sm:inline-flex">
                     Download
                 </UButton>
             </div>
         </template>
     </UHeader>
 </template>
-
-<style scoped>
-.app-header {
-    backdrop-filter: blur(12px);
-}
-
-.logo-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.logo-text {
-    font-size: 1.5rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, rgb(56 189 248), rgb(125 211 252));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.social-btn {
-    transition: transform 0.2s ease;
-}
-
-.social-btn:hover {
-    transform: scale(1.1);
-}
-
-.download-btn {
-    font-weight: 500;
-}
-</style>

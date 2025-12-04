@@ -1,0 +1,42 @@
+
+stages:
+  - test
+  - build_and_deploy
+
+image: oven/bun
+# The Docker image that will be used to build your app
+#create_stageing_pages:
+#  pages:
+#    # The folder that contains the files to be exposed at the Page URL
+#    publish: .output/public
+#  stage: test
+#  rules:
+#    # This ensures that only pushes to the default branch will trigger
+#    # a pages deploy
+#    - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
+#      # Functions that should be executed before the build script is run
+#      when: always
+#    - when: never
+#  before_script:
+#    - bun install
+#  script:
+#    - bun generate
+#    - echo "The site will be deployed to $CI_PAGES_URL"
+
+
+deploy_main:
+  stage: build_and_deploy
+  before_script:
+    - apt update && apt upgrade -y
+    - apt install -y rsync sshpass openssh-client
+    - bun install
+  script:
+    - bun generate
+    - echo "Deploying to production"
+    - chmod +x ./ci-cd/deploy.sh
+    - ./ci-cd/deploy.sh
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: always    # You can make it manual or automatic
+      allow_failure: false
+    - when: never

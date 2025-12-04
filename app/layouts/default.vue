@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import Footer from '~/components/layout/Footer.vue';
+import Header from '~/components/layout/Header.vue';
+
 </script>
 
 <template>
     <div class="app-layout">
         <!-- Navigation -->
-        <AppHeader />
+        <Header />
 
         <!-- Main Content -->
         <UMain class="main-content">
@@ -12,7 +15,7 @@
         </UMain>
 
         <!-- Footer -->
-        <AppFooter />
+        <Footer />
     </div>
 </template>
 

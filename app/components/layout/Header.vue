@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import LeiOSLogo from '../img/LeiOSLogo.vue';
+
 const links = [
     { label: 'Features', to: '#features' },
     { label: 'Download', to: '#download' },
@@ -16,7 +18,7 @@ const socialLinks = [
     <UHeader class="app-header">
         <template #left>
             <NuxtLink to="/" class="logo-link">
-                <span class="logo-text">LeiOS</span>
+                <LeiOSLogo class="h-6 w-auto" />
             </NuxtLink>
         </template>
 

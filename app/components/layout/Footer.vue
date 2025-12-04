@@ -88,29 +88,31 @@ const currentYear = new Date().getFullYear()
 }
 
 .footer-container {
-    padding: 3rem 0;
+    padding: 3rem 1rem;
+}
+
+@media (min-width: 640px) {
+    .footer-container {
+        padding: 3rem 1.5rem;
+    }
 }
 
 .footer-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 }
 
 @media (min-width: 768px) {
     .footer-grid {
+        display: grid;
         grid-template-columns: 2fr 1fr 1fr;
+        gap: 2rem;
     }
 }
 
 .footer-brand {
-    grid-column: 1 / -1;
-}
-
-@media (min-width: 768px) {
-    .footer-brand {
-        grid-column: span 1;
-    }
+    max-width: 100%;
 }
 
 .logo-text {
@@ -120,18 +122,26 @@ const currentYear = new Date().getFullYear()
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: inline-block;
 }
 
 .brand-description {
     margin-top: 1rem;
     color: rgb(148 163 184);
-    max-width: 28rem;
+    max-width: 100%;
     line-height: 1.6;
+    font-size: 0.9375rem;
+}
+
+@media (min-width: 768px) {
+    .brand-description {
+        max-width: 28rem;
+    }
 }
 
 .social-links {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     margin-top: 1.5rem;
 }
 
@@ -151,7 +161,8 @@ const currentYear = new Date().getFullYear()
 .section-title {
     font-weight: 600;
     color: rgb(241 245 249);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9375rem;
 }
 
 .link-list {
@@ -167,6 +178,9 @@ const currentYear = new Date().getFullYear()
     color: rgb(148 163 184);
     text-decoration: none;
     transition: color 0.2s ease;
+    font-size: 0.9375rem;
+    display: inline-block;
+    padding: 0.25rem 0;
 }
 
 .footer-link:hover {
@@ -179,20 +193,29 @@ const currentYear = new Date().getFullYear()
     padding-top: 2rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
     align-items: center;
+    text-align: center;
 }
 
 @media (min-width: 768px) {
     .footer-bottom {
         flex-direction: row;
         justify-content: space-between;
+        text-align: left;
     }
 }
 
 .copyright,
 .tagline {
     color: rgb(100 116 139);
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
+}
+
+@media (min-width: 640px) {
+    .copyright,
+    .tagline {
+        font-size: 0.875rem;
+    }
 }
 </style>

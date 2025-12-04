@@ -22,31 +22,17 @@ const socialLinks = [
             </NuxtLink>
         </template>
 
-        <template #body>
-            <UNavigationMenu 
-                :items="links.map(link => ({
-                    label: link.label,
-                    to: link.to,
-                    target: link.external ? '_blank' : undefined
-                }))" 
-                class="nav-menu"
-            />
-        </template>
+        <UNavigationMenu :items="links.map(link => ({
+            label: link.label,
+            to: link.to,
+            target: link.external ? '_blank' : undefined
+        }))" class="nav-menu" />
 
         <template #right>
             <div class="header-actions">
-                <UButton
-                    v-for="social in socialLinks"
-                    :key="social.label"
-                    :to="social.to"
-                    target="_blank"
-                    :icon="social.icon"
-                    color="neutral"
-                    variant="ghost"
-                    size="lg"
-                    :aria-label="social.label"
-                    class="social-btn"
-                />
+                <UButton v-for="social in socialLinks" :key="social.label" :to="social.to" target="_blank"
+                    :icon="social.icon" color="neutral" variant="ghost" size="lg" :aria-label="social.label"
+                    class="social-btn" />
                 <UButton to="#download" color="primary" variant="solid" class="download-btn">
                     Download
                 </UButton>

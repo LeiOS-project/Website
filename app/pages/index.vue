@@ -5,7 +5,7 @@ useSeoMeta({
     ogTitle: 'LeiOS - Debian-based OS for Developers',
     ogDescription: 'A stable, performant Linux distribution with a focus on developer experience and ease of use.',
     ogType: 'website',
-    ogUrl: 'https://leios.dev',
+    ogUrl: 'https://leios.dev/statics/logo/logo.png',
     ogSiteName: 'LeiOS',
     ogLocale: 'en_US',
     ogImage: 'https://leios.dev/og-image.png',

@@ -8,11 +8,11 @@ useSeoMeta({
     ogUrl: 'https://www.leios.dev',
     ogSiteName: 'LeiOS',
     ogLocale: 'de_DE',
-    ogImage: 'https://www.leios.dev/statics/logo/logo.png',
+    ogImage: 'https://www.leios.dev/static/logo/logo.png',
     twitterCard: 'summary_large_image',
     twitterTitle: 'LeiOS - Debian-based OS for Developers',
     twitterDescription: 'A stable, performant Linux distribution with a focus on developer experience and ease of use.',
-    twitterImage: 'https://www.leios.dev/statics/logo/logo.png',
+    twitterImage: 'https://www.leios.dev/static/logo/logo.png',
 })
 
 // Structured Data (JSON-LD) für bessere Suchmaschinenindexierung

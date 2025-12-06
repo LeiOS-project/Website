@@ -17,30 +17,7 @@ useSeoMeta({
 
 // Structured Data (JSON-LD) für bessere Suchmaschinenindexierung
 useHead({
-    script: [
-        {
-            type: 'application/ld+json',
-            innerHTML: JSON.stringify({
-                '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
-                name: 'LeiOS',
-                applicationCategory: 'OperatingSystem',
-                operatingSystem: 'Linux',
-                description: 'LeiOS is a Debian-based operating system focused on stability, great performance, and an exceptional out-of-box experience.',
-                url: 'https://leios.dev',
-                offers: {
-                    '@type': 'Offer',
-                    price: '0',
-                    priceCurrency: 'USD'
-                },
-                author: {
-                    '@type': 'Organization',
-                    name: 'LeiOS Project',
-                    url: 'https://leios.dev'
-                }
-            })
-        }
-    ]
+
 })
 
 definePageMeta({

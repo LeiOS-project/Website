@@ -44,11 +44,32 @@ export default defineNuxtConfig({
 				{ name: 'keywords', content: 'LeiOS, Linux, Debian, Operating System, Developer OS, Open Source, Linux Distribution' }
 			],
 			link: [
-				{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-				{ rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-				{ rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap' },
-				{ rel: 'canonical', href: 'https://leios.dev' },
+				{ rel: 'canonical', href: 'https://www.leios.dev' },
 				{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+			],
+			script: [
+				{
+					type: 'application/ld+json',
+					innerHTML: JSON.stringify({
+						'@context': 'https://schema.org',
+						'@type': 'SoftwareApplication',
+						name: 'LeiOS',
+						applicationCategory: 'OperatingSystem',
+						operatingSystem: 'Linux',
+						description: 'LeiOS is a Debian-based operating system focused on stability, great performance, and an exceptional out-of-box experience.',
+						url: 'https://www.leios.dev',
+						offers: {
+							'@type': 'Offer',
+							price: '0',
+							priceCurrency: 'USD'
+						},
+						author: {
+							'@type': 'Organization',
+							name: 'LeiOS Project',
+							url: 'https://www.leios.dev'
+						}
+					})
+				}
 			]
 		}
 	},

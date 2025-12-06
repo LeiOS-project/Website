@@ -108,85 +108,82 @@ const sourceLinks = [
 </script>
 
 <template>
-    <div class="home-page">
+    <div class="space-y-0">
         <!-- Hero Section -->
-        <section class="hero-section hero-glow">
-            <!-- Background decoration -->
-            <div class="hero-bg-decoration">
-                <div class="glow-orb glow-orb--top"></div>
-                <div class="glow-orb glow-orb--bottom"></div>
+        <section class="relative flex min-h-[90vh] items-center overflow-hidden bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(56,189,248,0.15),transparent)]">
+            <div class="pointer-events-none absolute inset-0 overflow-hidden">
+                <div class="absolute h-96 w-96 rounded-full bg-sky-500/10 blur-3xl" style="top:25%;left:25%"></div>
+                <div class="absolute h-96 w-96 rounded-full bg-sky-400/5 blur-3xl" style="bottom:25%;right:25%"></div>
             </div>
 
-            <UContainer class="hero-content">
-                <div class="hero-inner">
-                    <!-- Badge -->
-                    <UBadge color="primary" variant="soft" size="lg" class="hero-badge">
-                        <UIcon name="i-lucide-sparkles" class="badge-icon" />
+            <UContainer class="relative z-10">
+                <div class="mx-auto max-w-4xl text-center">
+                    <UBadge color="primary" variant="soft" size="xl" class="mb-6 inline-flex items-center gap-1">
+                        <UIcon name="i-lucide-sparkles" />
                         Debian-based Linux Distribution
                     </UBadge>
 
-                    <!-- Headline -->
-                    <h1 class="hero-title">
-                        Linux, <span class="gradient-text">Refined</span>
+                    <h1 class="mb-6 text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl md:text-7xl">
+                        Linux, <span class="bg-linear-to-tr from-sky-400 to-sky-200 bg-clip-text text-transparent">Refined</span>
                     </h1>
 
-                    <!-- Subtitle -->
-                    <p class="hero-subtitle">
-                        A Debian-based OS focused on stability, performance, and an exceptional out-of-box experience. 
+                    <p class="mx-auto mb-8 max-w-2xl leading-[1.6] text-lg text-slate-400 sm:text-xl lg:text-2xl">
+                        A Debian-based OS focused on stability, performance, and an exceptional out-of-box experience.
                         Built for developers. Designed for everyone.
                     </p>
 
-                    <!-- CTA Buttons -->
-                    <div class="hero-actions">
-                        <UButton to="#download" size="xl" color="primary" class="cta-btn">
-                            <UIcon name="i-lucide-download" class="btn-icon" />
+                    <div class="mb-12 flex flex-col justify-center gap-4 sm:flex-row">
+                        <UButton to="#download" size="xl" color="primary" class="px-8">
+                            <template #leading>
+                                <UIcon name="i-lucide-download" />
+                            </template>
                             Download LeiOS
                         </UButton>
-                        <UButton to="https://github.com/LeiOS-project" target="_blank" size="xl" color="neutral" variant="outline" class="cta-btn">
-                            <UIcon name="i-lucide-github" class="btn-icon" />
+                        <UButton to="https://github.com/LeiOS-project" target="_blank" size="xl" color="neutral" variant="outline" class="px-8">
+                            <template #leading>
+                                <UIcon name="i-lucide-github" />
+                            </template>
                             View on GitHub
                         </UButton>
                     </div>
 
-                    <!-- Stats -->
-                    <div class="stats-grid">
-                        <div v-for="stat in stats" :key="stat.label" class="stat-item">
-                            <div class="stat-value">{{ stat.value }}</div>
-                            <div class="stat-label">{{ stat.label }}</div>
+                    <div class="mx-auto grid max-w-xl w-max grid-cols-2 gap-8 text-center md:max-w-3xl md:grid-cols-4">
+                        <div v-for="stat in stats" :key="stat.label" class="space-y-1">
+                            <div class="text-2xl font-bold text-sky-400 md:text-3xl">{{ stat.value }}</div>
+                            <div class="text-sm text-slate-500">{{ stat.label }}</div>
                         </div>
                     </div>
                 </div>
             </UContainer>
 
-            <!-- Scroll indicator -->
-            <div class="scroll-indicator">
-                <UIcon name="i-lucide-chevron-down" class="scroll-icon" />
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-slate-500">
+                <UIcon name="i-lucide-chevron-down" class="text-xl" />
             </div>
         </section>
 
         <!-- Features Section -->
-        <section id="features" class="features-section">
+        <section id="features" class="bg-slate-950/50 py-24">
             <UContainer>
-                <header class="section-header">
-                    <UBadge color="primary" variant="soft">Features</UBadge>
-                    <h2 class="section-title">Why Choose LeiOS?</h2>
-                    <p class="section-description">
+                <header class="mb-12 text-center">
+                    <UBadge color="primary" variant="soft" size="xl" class="mb-3">Features</UBadge>
+                    <h2 class="mb-3 text-3xl font-bold sm:text-4xl lg:text-5xl">Why Choose LeiOS?</h2>
+                    <p class="mx-auto max-w-3xl text-lg text-slate-400">
                         Every aspect of LeiOS is designed with care to provide you the best Linux experience.
                     </p>
                 </header>
 
-                <div class="features-grid">
-                    <UCard 
-                        v-for="feature in features" 
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+                    <UCard
+                        v-for="feature in features"
                         :key="feature.title"
-                        class="feature-card"
+                        class="border-slate-800 bg-slate-900/50 transition duration-300 hover:-translate-y-1 hover:border-sky-400/50"
                     >
-                        <div class="feature-content">
-                            <div class="feature-icon-wrapper">
-                                <UIcon :name="feature.icon" class="feature-icon" />
+                        <div class="space-y-3 p-2">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-sky-500/10">
+                                <UIcon :name="feature.icon" class="text-xl text-sky-400" />
                             </div>
-                            <h3 class="feature-title">{{ feature.title }}</h3>
-                            <p class="feature-description">{{ feature.description }}</p>
+                            <h3 class="text-lg font-semibold">{{ feature.title }}</h3>
+                            <p class="text-slate-400 leading-relaxed">{{ feature.description }}</p>
                         </div>
                     </UCard>
                 </div>
@@ -194,60 +191,61 @@ const sourceLinks = [
         </section>
 
         <!-- Download Section -->
-        <section id="download" class="download-section">
-            <div class="download-bg-gradient"></div>
-            
-            <UContainer class="download-content">
-                <header class="section-header">
-                    <UBadge color="primary" variant="soft">Download</UBadge>
-                    <h2 class="section-title">Get Started with LeiOS</h2>
-                    <p class="section-description">
+        <section id="download" class="relative py-24">
+            <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-sky-500/5 to-transparent"></div>
+
+            <UContainer class="relative z-10">
+                <header class="mb-12 text-center">
+                    <UBadge color="primary" variant="soft" size="xl" class="mb-3">Download</UBadge>
+                    <h2 class="mb-3 text-3xl font-bold sm:text-4xl lg:text-5xl">Get Started with LeiOS</h2>
+                    <p class="mx-auto max-w-3xl text-lg text-slate-400">
                         Download the latest version and experience Linux the way it should be.
                     </p>
                 </header>
 
-                <div class="download-main">
-                    <UCard class="download-card">
-                        <div class="download-card-inner">
-                            <div class="download-icon-wrapper">
-                                <UIcon name="i-lucide-download" class="download-icon" />
+                <div class="mx-auto max-w-3xl space-y-6">
+                    <UCard class="border-slate-800 bg-slate-900/80">
+                        <div class="space-y-6 p-6 text-center">
+                            <div class="mx-auto flex h-20 w-20 items-center justify-center rounded-2xl bg-sky-500/10">
+                                <UIcon name="i-lucide-download" class="text-4xl text-sky-400" />
                             </div>
-                            <h3 class="download-title">LeiOS Latest</h3>
-                            <p class="download-info">
-                                Based on Debian Stable • 64-bit (x86_64)
-                            </p>
-                            
-                            <div class="download-actions">
-                                <UButton size="lg" color="primary" class="download-btn" disabled>
-                                    <UIcon name="i-lucide-download" class="btn-icon" />
+                            <h3 class="text-xl font-bold">LeiOS Latest</h3>
+                            <p class="text-slate-400">Based on Debian Stable • 64-bit (x86_64)</p>
+
+                            <div class="flex flex-col justify-center gap-4 sm:flex-row">
+                                <UButton size="lg" color="primary" class="px-8" disabled>
+                                    <template #leading>
+                                        <UIcon name="i-lucide-download" />
+                                    </template>
                                     Download ISO (Coming Soon)
                                 </UButton>
                             </div>
 
-                            <p class="download-note">
-                                Check our 
-                                <NuxtLink to="https://blog.leicraftmc.de/tag/leios/" target="_blank" class="link-highlight">blog</NuxtLink>
+                            <p class="text-sm text-slate-500">
+                                Check our
+                                <NuxtLink to="https://blog.leicraftmc.de/tag/leios/" target="_blank" class="text-sky-400 hover:underline">
+                                    blog
+                                </NuxtLink>
                                 for release announcements and updates.
                             </p>
                         </div>
                     </UCard>
 
-                    <!-- Source Code Links -->
-                    <div class="source-links">
-                        <UCard 
-                            v-for="link in sourceLinks" 
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <UCard
+                            v-for="link in sourceLinks"
                             :key="link.title"
-                            class="source-card"
+                            class="border-slate-800 bg-slate-900/50 transition hover:border-sky-400/50"
                         >
-                            <NuxtLink :to="link.to" target="_blank" class="source-link">
-                                <div class="source-icon-wrapper">
-                                    <UIcon :name="link.icon" class="source-icon" />
+                            <NuxtLink :to="link.to" target="_blank" class="flex items-center gap-4 p-4 text-slate-100 no-underline">
+                                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-slate-800">
+                                    <UIcon :name="link.icon" class="text-lg text-sky-400" />
                                 </div>
-                                <div class="source-info">
-                                    <h4 class="source-title">{{ link.title }}</h4>
-                                    <p class="source-subtitle">{{ link.subtitle }}</p>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="font-semibold">{{ link.title }}</h4>
+                                    <p class="truncate text-sm text-slate-400">{{ link.subtitle }}</p>
                                 </div>
-                                <UIcon name="i-lucide-external-link" class="external-icon" />
+                                <UIcon name="i-lucide-external-link" class="text-slate-500" />
                             </NuxtLink>
                         </UCard>
                     </div>
@@ -256,31 +254,53 @@ const sourceLinks = [
         </section>
 
         <!-- Community Section -->
-        <section id="community" class="community-section">
+        <section id="community" class="bg-slate-950/50 py-24">
             <UContainer>
-                <header class="section-header">
-                    <UBadge color="primary" variant="soft">Community</UBadge>
-                    <h2 class="section-title">Join the Community</h2>
-                    <p class="section-description">
+                <header class="mb-12 text-center">
+                    <UBadge color="primary" variant="soft" size="xl" class="mb-3">Community</UBadge>
+                    <h2 class="mb-3 text-3xl font-bold sm:text-4xl lg:text-5xl">Join the Community</h2>
+                    <p class="mx-auto max-w-3xl text-lg text-slate-400">
                         Connect with other LeiOS users, get help, and contribute to the project.
                     </p>
                 </header>
 
-                <div class="community-grid">
-                    <UCard 
-                        v-for="card in communityCards" 
+                <div class="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
+                    <UCard
+                        v-for="card in communityCards"
                         :key="card.title"
-                        :class="['community-card', `community-card--${card.color}`]"
+                        :class="[
+                            'border-slate-800 bg-slate-900/80 transition duration-300 hover:-translate-y-1',
+                            card.color === 'indigo' ? 'hover:border-indigo-400/50' : '',
+                            card.color === 'orange' ? 'hover:border-orange-400/50' : '',
+                            card.color === 'green' ? 'hover:border-green-400/50' : ''
+                        ]"
                     >
-                        <NuxtLink :to="card.to" target="_blank" class="community-link">
-                            <div :class="['community-icon-wrapper', `community-icon-wrapper--${card.color}`]">
-                                <UIcon :name="card.icon" class="community-icon" />
+                        <NuxtLink :to="card.to" target="_blank" class="block space-y-4 p-4 text-center no-underline">
+                            <div
+                                :class="[
+                                    'mx-auto flex h-16 w-16 items-center justify-center rounded-xl',
+                                    card.color === 'indigo' ? 'bg-indigo-400/10' : '',
+                                    card.color === 'orange' ? 'bg-orange-400/10' : '',
+                                    card.color === 'green' ? 'bg-green-400/10' : ''
+                                ]"
+                            >
+                                <UIcon
+                                    :name="card.icon"
+                                    :class="[
+                                        'text-3xl',
+                                        card.color === 'indigo' ? 'text-indigo-400' : '',
+                                        card.color === 'orange' ? 'text-orange-400' : '',
+                                        card.color === 'green' ? 'text-green-400' : ''
+                                    ]"
+                                />
                             </div>
-                            <h3 class="community-title">{{ card.title }}</h3>
-                            <p class="community-description">{{ card.description }}</p>
-                            <UButton color="neutral" variant="soft" size="sm" class="community-btn">
+                            <h3 class="text-lg font-semibold">{{ card.title }}</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed">{{ card.description }}</p>
+                            <UButton color="neutral" variant="soft" size="sm" class="pointer-events-none">
                                 {{ card.buttonText }}
-                                <UIcon name="i-lucide-external-link" class="btn-icon-sm" />
+                                <template #trailing>
+                                    <UIcon name="i-lucide-external-link" class="text-sm" />
+                                </template>
                             </UButton>
                         </NuxtLink>
                     </UCard>
@@ -289,24 +309,28 @@ const sourceLinks = [
         </section>
 
         <!-- CTA Section -->
-        <section class="cta-section">
-            <div class="cta-bg-gradient"></div>
-            
-            <UContainer class="cta-content">
-                <div class="cta-inner">
-                    <h2 class="cta-title">
-                        Ready to Try <span class="gradient-text">LeiOS</span>?
+        <section class="relative overflow-hidden py-24">
+            <div class="pointer-events-none absolute inset-0 bg-linear-to-r from-sky-500/10 via-transparent to-sky-500/10"></div>
+
+            <UContainer class="relative z-10">
+                <div class="mx-auto max-w-3xl text-center">
+                    <h2 class="mb-6 text-3xl font-bold sm:text-4xl lg:text-5xl">
+                        Ready to Try <span class="bg-linear-to-tr from-sky-400 to-sky-200 bg-clip-text text-transparent">LeiOS</span>?
                     </h2>
-                    <p class="cta-description">
+                    <p class="mb-8 text-lg text-slate-400">
                         Experience a Linux distribution that just works. Stable, fast, and designed with you in mind.
                     </p>
-                    <div class="cta-actions">
-                        <UButton to="#download" size="xl" color="primary" class="cta-btn">
-                            <UIcon name="i-lucide-download" class="btn-icon" />
+                    <div class="flex flex-col justify-center gap-4 sm:flex-row">
+                        <UButton to="#download" size="xl" color="primary" class="px-8">
+                            <template #leading>
+                                <UIcon name="i-lucide-download" />
+                            </template>
                             Download Now
                         </UButton>
-                        <UButton to="https://discord.gg/8YC5BXjCc5" target="_blank" size="xl" color="neutral" variant="outline" class="cta-btn">
-                            <UIcon name="i-lucide-message-circle" class="btn-icon" />
+                        <UButton to="https://discord.gg/8YC5BXjCc5" target="_blank" size="xl" color="neutral" variant="outline" class="px-8">
+                            <template #leading>
+                                <UIcon name="i-lucide-message-circle" />
+                            </template>
                             Join Discord
                         </UButton>
                     </div>
@@ -316,691 +340,3 @@ const sourceLinks = [
     </div>
 </template>
 
-<style scoped>
-/* ===========================
-   Hero Section
-   =========================== */
-.hero-section {
-    position: relative;
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-}
-
-.hero-bg-decoration {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.glow-orb {
-    position: absolute;
-    width: 24rem;
-    height: 24rem;
-    border-radius: 9999px;
-    filter: blur(64px);
-}
-
-.glow-orb--top {
-    top: 25%;
-    left: 25%;
-    background: rgb(14 165 233 / 0.1);
-}
-
-.glow-orb--bottom {
-    bottom: 25%;
-    right: 25%;
-    background: rgb(56 189 248 / 0.05);
-}
-
-.hero-content {
-    position: relative;
-    z-index: 10;
-}
-
-.hero-inner {
-    max-width: 56rem;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.hero-badge {
-    margin-bottom: 1.5rem;
-}
-
-.badge-icon {
-    margin-right: 0.25rem;
-}
-
-.hero-title {
-    font-size: clamp(3rem, 8vw, 4.5rem);
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    margin-bottom: 1.5rem;
-    line-height: 1.1;
-}
-
-.hero-subtitle {
-    font-size: clamp(1.125rem, 3vw, 1.5rem);
-    color: rgb(148 163 184);
-    margin-bottom: 2rem;
-    max-width: 42rem;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-}
-
-.hero-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 3rem;
-}
-
-@media (min-width: 640px) {
-    .hero-actions {
-        flex-direction: row;
-    }
-}
-
-.cta-btn {
-    padding-left: 2rem;
-    padding-right: 2rem;
-}
-
-.btn-icon {
-    margin-right: 0.5rem;
-}
-
-.btn-icon-sm {
-    margin-left: 0.25rem;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-    max-width: 32rem;
-    margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-    .stats-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-.stat-item {
-    text-align: center;
-}
-
-.stat-value {
-    font-size: clamp(1.5rem, 4vw, 1.875rem);
-    font-weight: 700;
-    color: rgb(56 189 248);
-}
-
-.stat-label {
-    font-size: 0.875rem;
-    color: rgb(100 116 139);
-}
-
-.scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: bounce 1s infinite;
-}
-
-.scroll-icon {
-    font-size: 1.5rem;
-    color: rgb(100 116 139);
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    50% {
-        transform: translateX(-50%) translateY(-10px);
-    }
-}
-
-/* ===========================
-   Section Common Styles
-   =========================== */
-.section-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.section-header :deep(.badge) {
-    margin-bottom: 1rem;
-}
-
-.section-title {
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-}
-
-.section-description {
-    font-size: 1.125rem;
-    color: rgb(148 163 184);
-    max-width: 42rem;
-    margin: 0 auto;
-}
-
-/* ===========================
-   Features Section
-   =========================== */
-.features-section {
-    padding: 6rem 0;
-    background: rgb(15 23 42 / 0.5);
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (min-width: 1024px) {
-    .features-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-.feature-card {
-    background: rgb(15 23 42 / 0.5);
-    border-color: rgb(30 41 59);
-    transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-    border-color: rgb(56 189 248 / 0.5);
-    transform: translateY(-4px);
-}
-
-.feature-content {
-    padding: 0.5rem;
-}
-
-.feature-icon-wrapper {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 0.5rem;
-    background: rgb(14 165 233 / 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-}
-
-.feature-icon {
-    font-size: 1.5rem;
-    color: rgb(56 189 248);
-}
-
-.feature-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.feature-description {
-    color: rgb(148 163 184);
-    line-height: 1.6;
-}
-
-/* ===========================
-   Download Section
-   =========================== */
-.download-section {
-    padding: 6rem 0;
-    position: relative;
-}
-
-.download-bg-gradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent, rgb(14 165 233 / 0.05), transparent);
-    pointer-events: none;
-}
-
-.download-content {
-    position: relative;
-    z-index: 10;
-}
-
-.download-main {
-    max-width: 48rem;
-    margin: 0 auto;
-}
-
-.download-card {
-    background: rgb(15 23 42 / 0.8);
-    border-color: rgb(30 41 59);
-}
-
-.download-card-inner {
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.download-icon-wrapper {
-    width: 5rem;
-    height: 5rem;
-    border-radius: 1rem;
-    background: rgb(14 165 233 / 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-}
-
-.download-icon {
-    font-size: 2.5rem;
-    color: rgb(56 189 248);
-}
-
-.download-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.download-info {
-    color: rgb(148 163 184);
-    margin-bottom: 1.5rem;
-}
-
-.download-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-}
-
-@media (min-width: 640px) {
-    .download-actions {
-        flex-direction: row;
-    }
-}
-
-.download-btn {
-    padding-left: 2rem;
-    padding-right: 2rem;
-}
-
-.download-note {
-    font-size: 0.875rem;
-    color: rgb(100 116 139);
-}
-
-.link-highlight {
-    color: rgb(56 189 248);
-    text-decoration: none;
-    transition: text-decoration 0.2s;
-}
-
-.link-highlight:hover {
-    text-decoration: underline;
-}
-
-.source-links {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-@media (min-width: 640px) {
-    .source-links {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-.source-card {
-    background: rgb(15 23 42 / 0.5);
-    border-color: rgb(30 41 59);
-    transition: border-color 0.2s;
-}
-
-.source-card:hover {
-    border-color: rgb(56 189 248 / 0.5);
-}
-
-.source-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.5rem;
-    text-decoration: none;
-    color: inherit;
-}
-
-.source-icon-wrapper {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 0.5rem;
-    background: rgb(30 41 59);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.source-icon {
-    font-size: 1.25rem;
-    color: rgb(56 189 248);
-}
-
-.source-info {
-    flex: 1;
-    min-width: 0;
-}
-
-.source-title {
-    font-weight: 600;
-}
-
-.source-subtitle {
-    font-size: 0.875rem;
-    color: rgb(148 163 184);
-}
-
-.external-icon {
-    color: rgb(100 116 139);
-    flex-shrink: 0;
-}
-
-/* ===========================
-   Community Section
-   =========================== */
-.community-section {
-    padding: 6rem 0;
-    background: rgb(15 23 42 / 0.5);
-}
-
-.community-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    max-width: 56rem;
-    margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-    .community-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-.community-card {
-    background: rgb(15 23 42 / 0.8);
-    border-color: rgb(30 41 59);
-    transition: all 0.3s ease;
-}
-
-.community-card:hover {
-    transform: translateY(-4px);
-}
-
-.community-card--indigo:hover {
-    border-color: rgb(129 140 248 / 0.5);
-}
-
-.community-card--orange:hover {
-    border-color: rgb(251 146 60 / 0.5);
-}
-
-.community-card--green:hover {
-    border-color: rgb(74 222 128 / 0.5);
-}
-
-.community-link {
-    display: block;
-    padding: 1rem;
-    text-align: center;
-    text-decoration: none;
-    color: inherit;
-}
-
-.community-icon-wrapper {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1rem;
-}
-
-.community-icon-wrapper--indigo {
-    background: rgb(129 140 248 / 0.1);
-}
-
-.community-icon-wrapper--orange {
-    background: rgb(251 146 60 / 0.1);
-}
-
-.community-icon-wrapper--green {
-    background: rgb(74 222 128 / 0.1);
-}
-
-.community-icon {
-    font-size: 2rem;
-}
-
-.community-card--indigo .community-icon {
-    color: rgb(129 140 248);
-}
-
-.community-card--orange .community-icon {
-    color: rgb(251 146 60);
-}
-
-.community-card--green .community-icon {
-    color: rgb(74 222 128);
-}
-
-.community-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.community-description {
-    font-size: 0.875rem;
-    color: rgb(148 163 184);
-    margin-bottom: 1rem;
-    line-height: 1.5;
-}
-
-.community-btn {
-    pointer-events: none;
-}
-
-/* ===========================
-   CTA Section
-   =========================== */
-.cta-section {
-    padding: 6rem 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.cta-bg-gradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgb(14 165 233 / 0.1), transparent, rgb(14 165 233 / 0.1));
-    pointer-events: none;
-}
-
-.cta-content {
-    position: relative;
-    z-index: 10;
-}
-
-.cta-inner {
-    text-align: center;
-    max-width: 48rem;
-    margin: 0 auto;
-}
-
-.cta-title {
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-}
-
-.cta-description {
-    font-size: 1.125rem;
-    color: rgb(148 163 184);
-    margin-bottom: 2rem;
-}
-
-.cta-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-}
-
-@media (min-width: 640px) {
-    .cta-actions {
-        flex-direction: row;
-    }
-}
-
-/* ===========================
-   Scrollbar Styles
-   =========================== */
-
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgb(15 23 42);
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgb(56 189 248 / 0.3);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgb(56 189 248 / 0.5);
-}
-
-/* Firefox scrollbar */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: rgb(56 189 248 / 0.3) rgb(15 23 42);
-}
-
-/* ===========================
-   Utility Classes
-   =========================== */
-
-/* Gradient text */
-.gradient-text {
-    background: linear-gradient(135deg, rgb(56 189 248), rgb(125 211 252));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* Hero background glow effect */
-.hero-glow {
-    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(56, 189, 248, 0.15), transparent);
-}
-
-/* Glass effect */
-.glass {
-    background: rgb(15 23 42 / 0.8);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgb(30 41 59);
-}
-
-/* Card hover effect */
-.card-hover {
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.card-hover:hover {
-    transform: translateY(-4px);
-    border-color: rgb(56 189 248 / 0.5);
-}
-
-/* Glow effect on hover */
-.glow-hover {
-    transition: box-shadow 0.3s ease;
-}
-
-.glow-hover:hover {
-    box-shadow: 0 0 20px rgb(56 189 248 / 0.3);
-}
-
-/* ===========================
-   Animation Keyframes
-   =========================== */
-
-@keyframes fade-in {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-@keyframes pulse-glow {
-    0%, 100% {
-        box-shadow: 0 0 20px rgb(56 189 248 / 0.2);
-    }
-    50% {
-        box-shadow: 0 0 40px rgb(56 189 248 / 0.4);
-    }
-}
-
-/* Animation utility classes */
-.animate-fade-in {
-    animation: fade-in 0.6s ease-out;
-}
-
-.animate-float {
-    animation: float 3s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
-}
-
-</style>

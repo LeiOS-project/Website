@@ -1,5 +1,5 @@
 {
-    "name": "leios-repo-website",
+    "name": "leios-website",
     "type": "module",
     "private": true,
     "scripts": {

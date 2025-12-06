@@ -5,14 +5,14 @@ useSeoMeta({
     ogTitle: 'LeiOS - Debian-based OS for Developers',
     ogDescription: 'A stable, performant Linux distribution with a focus on developer experience and ease of use.',
     ogType: 'website',
-    ogUrl: 'https://leios.dev/statics/logo/logo.png',
+    ogUrl: 'https://www.leios.dev',
     ogSiteName: 'LeiOS',
-    ogLocale: 'en_US',
-    ogImage: 'https://leios.dev/og-image.png',
+    ogLocale: 'de_DE',
+    ogImage: 'https://www.leios.dev/statics/logo/logo.png',
     twitterCard: 'summary_large_image',
     twitterTitle: 'LeiOS - Debian-based OS for Developers',
     twitterDescription: 'A stable, performant Linux distribution with a focus on developer experience and ease of use.',
-    twitterImage: 'https://leios.dev/og-image.png',
+    twitterImage: 'https://www.leios.dev/statics/logo/logo.png',
 })
 
 // Structured Data (JSON-LD) für bessere Suchmaschinenindexierung

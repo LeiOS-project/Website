@@ -309,8 +309,8 @@ const sourceLinks = [
         </section>
 
         <!-- CTA Section -->
-        <section class="relative overflow-hidden py-24">
-            <div class="pointer-events-none absolute inset-0 bg-linear-to-r from-sky-500/10 via-transparent to-sky-500/10"></div>
+        <section class="relative overflow-hidden py-28 ">
+            <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-sky-500/5 to-transparent"></div>
 
             <UContainer class="relative z-10">
                 <div class="mx-auto max-w-3xl text-center">

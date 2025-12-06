@@ -31,9 +31,7 @@ const socialLinks = [
 <template>
     <UHeader class="backdrop-blur-xl">
         <template #title>
-            <NuxtLink to="/" class="flex items-center gap-2">
-                <LeiOSLogo class="h-6 w-auto" />
-            </NuxtLink>
+            <LeiOSLogo class="h-8 w-auto" />
         </template>
 
         <UNavigationMenu :items="links" />

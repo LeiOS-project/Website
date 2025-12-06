@@ -1,221 +1,72 @@
 <script setup lang="ts">
+import type { FooterColumn } from '@nuxt/ui'
+
 const socialLinks = [
     { icon: 'i-lucide-github', to: 'https://github.com/LeiOS-project', label: 'GitHub' },
     { icon: 'i-lucide-message-circle', to: 'https://discord.gg/8YC5BXjCc5', label: 'Discord' }
 ]
 
 const resourceLinks = [
-    { label: 'Blog', to: 'https://blog.leicraftmc.de/tag/leios/' },
-    { label: 'Source Code', to: 'https://git.leicraftmc.de/LeiOS/' },
-    { label: 'GitHub', to: 'https://github.com/LeiOS-project' }
+    { label: 'Blog', to: 'https://blog.leicraftmc.de/tag/leios/', target: '_blank' },
+    { label: 'Source Code', to: 'https://git.leicraftmc.de/LeiOS/', target: '_blank' },
+    { label: 'GitHub', to: 'https://github.com/LeiOS-project', target: '_blank' }
 ]
 
 const communityLinks = [
-    { label: 'Discord', to: 'https://discord.gg/8YC5BXjCc5' },
-    { label: 'Contribute', to: 'https://github.com/LeiOS-project' }
+    { label: 'Discord', to: 'https://discord.gg/8YC5BXjCc5', target: '_blank' },
+    { label: 'Contribute', to: 'https://github.com/LeiOS-project', target: '_blank' }
+]
+
+const footerColumns: FooterColumn[] = [
+    { label: 'Resources', children: resourceLinks },
+    { label: 'Community', children: communityLinks }
 ]
 
 const currentYear = new Date().getFullYear()
 </script>
 
 <template>
-    <footer class="app-footer">
-        <UContainer class="footer-container">
-            <div class="footer-grid">
-                <!-- Brand -->
-                <div class="footer-brand">
-                    <span class="logo-text">LeiOS</span>
-                    <p class="brand-description">
-                        A Debian-based operating system focused on stability, performance, and an exceptional out-of-box experience. Built by developers, for everyone.
+    <UFooter :ui='{
+        root: "py-12",
+        container: "py-0 lg:py-0 lg:gap-x-0 gap-x-0 lg:block",
+        bottom: "p-0 lg:p-0 mt-8"
+    }'>
+        <UFooterColumns :columns="footerColumns" :ui="{
+            root: 'grid gap-8 sm:grid-cols-2 xl:grid-cols-2 w-full',
+            center: 'xl:col-span-1 grid',
+            label: 'text-slate-100 font-semibold text-base',
+            link: 'text-slate-400 hover:text-sky-400 text-sm sm:text-base inline-block py-1 transition-colors',
+            left: 'mb-0'
+        }">
+            <template #left>
+                <div class="space-y-4">
+                    <span
+                        class="inline-block text-2xl font-bold bg-linear-to-tr from-sky-400 to-sky-200 bg-clip-text text-transparent">LeiOS</span>
+                    <p class="text-slate-300/80 text-base leading-relaxed md:max-w-3xl">
+                        A Debian-based operating system focused on stability, performance, and an exceptional out-of-box
+                        experience. Built by developers, for everyone.
                     </p>
-                    <div class="social-links">
-                        <UButton
-                            v-for="social in socialLinks"
-                            :key="social.label"
-                            :to="social.to"
-                            target="_blank"
-                            :icon="social.icon"
-                            color="neutral"
-                            variant="ghost"
-                            size="lg"
-                            :aria-label="social.label"
-                            class="social-btn"
-                        />
+                    <div class="flex gap-2 pt-2">
+                        <UButton v-for="social in socialLinks" :key="social.label" :to="social.to" target="_blank"
+                            :icon="social.icon" color="neutral" variant="ghost" size="lg" :aria-label="social.label"
+                            class="transition-transform hover:scale-110 hover:text-sky-400" />
                     </div>
                 </div>
+            </template>
+        </UFooterColumns>
 
-                <!-- Resources -->
-                <div class="footer-section">
-                    <h4 class="section-title">Resources</h4>
-                    <ul class="link-list">
-                        <li v-for="link in resourceLinks" :key="link.label">
-                            <NuxtLink :to="link.to" target="_blank" class="footer-link">
-                                {{ link.label }}
-                            </NuxtLink>
-                        </li>
-                    </ul>
+        <template #bottom>
+            <UContainer>
+                <div
+                    class="border-t border-slate-800 pt-8 flex flex-col items-center text-center md:flex-row md:justify-between md:text-left">
+                    <p class="text-slate-500 text-xs sm:text-sm">
+                        © {{ currentYear }} LeiOS Project. Open Source under AGPL-3.0 License.
+                    </p>
+                    <p class="text-slate-500 text-xs sm:text-sm">
+                        Built with ❤️ for the community
+                    </p>
                 </div>
-
-                <!-- Community -->
-                <div class="footer-section">
-                    <h4 class="section-title">Community</h4>
-                    <ul class="link-list">
-                        <li v-for="link in communityLinks" :key="link.label">
-                            <NuxtLink :to="link.to" target="_blank" class="footer-link">
-                                {{ link.label }}
-                            </NuxtLink>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p class="copyright">
-                    © {{ currentYear }} LeiOS Project. Open Source under GPL License.
-                </p>
-                <p class="tagline">
-                    Built with ❤️ for the community
-                </p>
-            </div>
-        </UContainer>
-    </footer>
+            </UContainer>
+        </template>
+    </UFooter>
 </template>
-
-<style scoped>
-.app-footer {
-    border-top: 1px solid rgb(30 41 59);
-    background: rgb(2 6 23 / 0.5);
-}
-
-.footer-container {
-    padding: 3rem 1rem;
-}
-
-@media (min-width: 640px) {
-    .footer-container {
-        padding: 3rem 1.5rem;
-    }
-}
-
-.footer-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-}
-
-@media (min-width: 768px) {
-    .footer-grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr;
-        gap: 2rem;
-    }
-}
-
-.footer-brand {
-    max-width: 100%;
-}
-
-.logo-text {
-    font-size: 1.5rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, rgb(56 189 248), rgb(125 211 252));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    display: inline-block;
-}
-
-.brand-description {
-    margin-top: 1rem;
-    color: rgb(148 163 184);
-    max-width: 100%;
-    line-height: 1.6;
-    font-size: 0.9375rem;
-}
-
-@media (min-width: 768px) {
-    .brand-description {
-        max-width: 28rem;
-    }
-}
-
-.social-links {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-}
-
-.social-btn {
-    transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.social-btn:hover {
-    transform: scale(1.1);
-    color: rgb(56 189 248);
-}
-
-.footer-section {
-    min-width: 0;
-}
-
-.section-title {
-    font-weight: 600;
-    color: rgb(241 245 249);
-    margin-bottom: 0.75rem;
-    font-size: 0.9375rem;
-}
-
-.link-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.footer-link {
-    color: rgb(148 163 184);
-    text-decoration: none;
-    transition: color 0.2s ease;
-    font-size: 0.9375rem;
-    display: inline-block;
-    padding: 0.25rem 0;
-}
-
-.footer-link:hover {
-    color: rgb(56 189 248);
-}
-
-.footer-bottom {
-    border-top: 1px solid rgb(30 41 59);
-    margin-top: 2rem;
-    padding-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: center;
-    text-align: center;
-}
-
-@media (min-width: 768px) {
-    .footer-bottom {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-    }
-}
-
-.copyright,
-.tagline {
-    color: rgb(100 116 139);
-    font-size: 0.8125rem;
-}
-
-@media (min-width: 640px) {
-    .copyright,
-    .tagline {
-        font-size: 0.875rem;
-    }
-}
-</style>

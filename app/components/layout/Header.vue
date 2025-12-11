@@ -16,6 +16,11 @@ const links = computed<NavigationMenuItem[]>(() => [
         to: '#community'
     },
     {
+        label: 'Developer Hub',
+        to: 'https://hub.leios.dev',
+        target: '_blank'
+    },
+    {
         label: 'Blog',
         to: 'https://blog.leicraftmc.de/tag/leios/',
         target: '_blank'

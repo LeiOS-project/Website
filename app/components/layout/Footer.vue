@@ -26,6 +26,7 @@ const currentYear = new Date().getFullYear()
 </script>
 
 <template>
+    <USeparator></USeparator>
     <UFooter :ui='{
         root: "py-12",
         container: "py-0 lg:py-0 lg:gap-x-0 gap-x-0 lg:block",

@@ -2,7 +2,7 @@
 import type { FooterColumn } from '@nuxt/ui'
 
 const socialLinks = [
-    { icon: 'i-lucide-github', to: 'https://github.com/LeiOS-project', label: 'GitHub' },
+    { icon: 'i-lucide-github', to: 'https://git.leicraftmc.de/LeiOS', label: 'GitHub' },
     { icon: 'i-lucide-message-circle', to: 'https://discord.gg/8YC5BXjCc5', label: 'Discord' }
 ]
 
@@ -14,7 +14,8 @@ const resourceLinks = [
 
 const communityLinks = [
     { label: 'Discord', to: 'https://discord.gg/8YC5BXjCc5', target: '_blank' },
-    { label: 'Contribute', to: 'https://github.com/LeiOS-project', target: '_blank' }
+    { label: 'Contribute', to: 'https://git.leicraftmc.de/LeiOS', target: '_blank' },
+    { label: 'Developer Hub', to: 'https://hub.leios.dev', target: '_blank' }
 ]
 
 const footerColumns: FooterColumn[] = [

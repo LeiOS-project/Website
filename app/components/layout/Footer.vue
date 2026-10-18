@@ -1,29 +1,37 @@
 <script setup lang="ts">
-import type { FooterColumn } from '@nuxt/ui'
+import type { FooterColumn } from "@nuxt/ui";
 
 const socialLinks = [
-    { icon: 'i-lucide-github', to: 'https://git.leicraftmc.de/LeiOS', label: 'GitHub' },
-    { icon: 'i-lucide-message-circle', to: 'https://discord.gg/8YC5BXjCc5', label: 'Discord' }
-]
+	{ icon: "i-lucide-gitlab", to: "https://git.leicraftmc.de/LeiOS", label: "GitLab" },
+	{ icon: "i-lucide-github", to: "https://github.com/LeiOS-project", label: "GitHub" },
+	{ icon: "i-lucide-message-circle", to: "https://discord.gg/8YC5BXjCc5", label: "Discord" },
+];
 
 const resourceLinks = [
-    { label: 'Blog', to: 'https://blog.leicraftmc.de/tag/leios/', target: '_blank' },
-    { label: 'Source Code', to: 'https://git.leicraftmc.de/LeiOS/', target: '_blank' },
-    { label: 'GitHub', to: 'https://github.com/LeiOS-project', target: '_blank' }
-]
+	{ label: "Documentation", to: "/docs" },
+	{ label: "Blog", to: "https://blog.leicraftmc.de/tag/leios/", target: "_blank" },
+	{ label: "Source Code", to: "https://git.leicraftmc.de/LeiOS/", target: "_blank" },
+	{ label: "GitHub", to: "https://github.com/LeiOS-project", target: "_blank" },
+];
 
 const communityLinks = [
-    { label: 'Discord', to: 'https://discord.gg/8YC5BXjCc5', target: '_blank' },
-    { label: 'Contribute', to: 'https://git.leicraftmc.de/LeiOS', target: '_blank' },
-    { label: 'Developer Hub', to: 'https://hub.leios.dev', target: '_blank' }
-]
+	{ label: "Discord", to: "https://discord.gg/8YC5BXjCc5", target: "_blank" },
+	{ label: "Contribute", to: "/docs/community/contributing" },
+	{ label: "Developer Hub", to: "https://hub.leios.dev", target: "_blank" },
+];
+
+const legalLinks = [
+	{ label: "Impressum", to: "https://legal.leicraftmc.de/impressum/", target: "_blank" },
+	{ label: "Datenschutz", to: "https://legal.leicraftmc.de/datenschutz/", target: "_blank" },
+];
 
 const footerColumns: FooterColumn[] = [
-    { label: 'Resources', children: resourceLinks },
-    { label: 'Community', children: communityLinks }
-]
+	{ label: "Resources", children: resourceLinks },
+	{ label: "Community", children: communityLinks },
+	{ label: "Legal", children: legalLinks },
+];
 
-const currentYear = new Date().getFullYear()
+const currentYear = new Date().getFullYear();
 </script>
 
 <template>

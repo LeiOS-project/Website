@@ -1,110 +1,122 @@
 <script setup lang="ts">
-useSeoMeta({
-    title: 'LeiOS - Debian-based OS for Developers',
-    description: 'LeiOS is a Debian-based operating system focused on stability, great performance, and an exceptional out-of-box experience. Perfect for developers and everyday users alike.',
-    ogTitle: 'LeiOS - Debian-based OS for Developers',
-    ogDescription: 'A stable, performant Linux distribution with a focus on developer experience and ease of use.',
-    ogType: 'website',
-    ogUrl: 'https://www.leios.dev',
-    ogSiteName: 'LeiOS',
-    ogLocale: 'de_DE',
-    ogImage: 'https://www.leios.dev/static/logo/logo.png',
-    twitterCard: 'summary_large_image',
-    twitterTitle: 'LeiOS - Debian-based OS for Developers',
-    twitterDescription: 'A stable, performant Linux distribution with a focus on developer experience and ease of use.',
-    twitterImage: 'https://www.leios.dev/static/logo/logo.png',
-})
-
-// Structured Data (JSON-LD) für bessere Suchmaschinenindexierung
-useHead({
-
-})
+usePageSeo({
+	title: "LeiOS - Debian-based OS for Developers",
+	description:
+		"LeiOS is a Debian-based operating system focused on stability, great performance, and an exceptional out-of-box experience. Perfect for developers and everyday users alike.",
+	ogImage: "https://www.leios.dev/static/logo/logo.png",
+	jsonLd: {
+		"@context": "https://schema.org",
+		"@type": "SoftwareApplication",
+		name: "LeiOS",
+		applicationCategory: "OperatingSystem",
+		operatingSystem: "Linux",
+		description:
+			"LeiOS is a Debian-based operating system focused on stability, great performance, and an exceptional out-of-box experience.",
+		url: "https://www.leios.dev",
+		offers: {
+			"@type": "Offer",
+			price: "0",
+			priceCurrency: "USD",
+		},
+		author: {
+			"@type": "Organization",
+			name: "LeiOS Project",
+			url: "https://www.leios.dev",
+		},
+	},
+});
 
 definePageMeta({
-    layout: 'default'
-})
+	layout: "default",
+});
 
 const features = [
-    {
-        icon: 'i-lucide-shield-check',
-        title: 'Rock-Solid Stability',
-        description: 'Built on Debian\'s legendary stable base, LeiOS ensures your system runs reliably day after day, update after update.'
-    },
-    {
-        icon: 'i-lucide-zap',
-        title: 'Optimized Performance',
-        description: 'Carefully tuned for maximum performance without sacrificing stability. Fast boot times, responsive applications, efficient resource usage.'
-    },
-    {
-        icon: 'i-lucide-package-open',
-        title: 'Great Out-of-Box Experience',
-        description: 'Pre-configured with sensible defaults, essential tools, and a polished desktop. Get productive from the first boot.'
-    },
-    {
-        icon: 'i-lucide-code-2',
-        title: 'Developer Ready',
-        description: 'Comes with development tools pre-installed. Git, build essentials, popular editors, and easy access to programming languages.'
-    },
-    {
-        icon: 'i-lucide-users',
-        title: 'For Everyone',
-        description: 'While optimized for developers, LeiOS is designed to be approachable for anyone looking for a reliable Linux experience.'
-    },
-    {
-        icon: 'i-lucide-git-branch',
-        title: 'Open Source',
-        description: 'Completely open source and community-driven. Contribute, customize, and make it your own.'
-    }
-]
+	{
+		icon: "i-lucide-shield-check",
+		title: "Rock-Solid Stability",
+		description:
+			"Built on Debian's legendary stable base, LeiOS ensures your system runs reliably day after day, update after update.",
+	},
+	{
+		icon: "i-lucide-zap",
+		title: "Optimized Performance",
+		description:
+			"Carefully tuned for maximum performance without sacrificing stability. Fast boot times, responsive applications, efficient resource usage.",
+	},
+	{
+		icon: "i-lucide-package-open",
+		title: "Great Out-of-Box Experience",
+		description:
+			"Pre-configured with sensible defaults, essential tools, and a polished desktop. Get productive from the first boot.",
+	},
+	{
+		icon: "i-lucide-code-2",
+		title: "Developer Ready",
+		description:
+			"Comes with development tools pre-installed. Git, build essentials, popular editors, and easy access to programming languages.",
+	},
+	{
+		icon: "i-lucide-users",
+		title: "For Everyone",
+		description:
+			"While optimized for developers, LeiOS is designed to be approachable for anyone looking for a reliable Linux experience.",
+	},
+	{
+		icon: "i-lucide-git-branch",
+		title: "Open Source",
+		description:
+			"Completely open source and community-driven. Contribute, customize, and make it your own.",
+	},
+];
 
 const stats = [
-    { value: '100%', label: 'Open Source' },
-    { value: 'Debian', label: 'Based' },
-    { value: 'Fast', label: 'Performance' },
-    { value: 'Free', label: 'Forever' }
-]
+	{ value: "100%", label: "Open Source" },
+	{ value: "Debian", label: "Based" },
+	{ value: "Fast", label: "Performance" },
+	{ value: "Free", label: "Forever" },
+];
 
 const communityCards = [
-    {
-        to: 'https://discord.gg/8YC5BXjCc5',
-        icon: 'i-lucide-message-circle',
-        title: 'Discord',
-        description: 'Chat with the community, get support, and share your experience.',
-        buttonText: 'Join Server',
-        color: 'indigo'
-    },
-    {
-        to: 'https://blog.leicraftmc.de/tag/leios/',
-        icon: 'i-lucide-newspaper',
-        title: 'Blog',
-        description: 'Stay updated with the latest news, releases, and development updates.',
-        buttonText: 'Read Blog',
-        color: 'orange'
-    },
-    {
-        to: 'https://github.com/LeiOS-project',
-        icon: 'i-lucide-git-pull-request',
-        title: 'Contribute',
-        description: 'Help us improve LeiOS. Every contribution makes a difference.',
-        buttonText: 'Get Started',
-        color: 'green'
-    }
-]
+	{
+		to: "https://discord.gg/8YC5BXjCc5",
+		icon: "i-lucide-message-circle",
+		title: "Discord",
+		description: "Chat with the community, get support, and share your experience.",
+		buttonText: "Join Server",
+		color: "indigo",
+	},
+	{
+		to: "https://blog.leicraftmc.de/tag/leios/",
+		icon: "i-lucide-newspaper",
+		title: "Blog",
+		description: "Stay updated with the latest news, releases, and development updates.",
+		buttonText: "Read Blog",
+		color: "orange",
+	},
+	{
+		to: "/docs/community/contributing",
+		icon: "i-lucide-git-pull-request",
+		title: "Contribute",
+		description: "Help us improve LeiOS. Every contribution makes a difference.",
+		buttonText: "Get Started",
+		color: "green",
+	},
+];
 
 const sourceLinks = [
-    {
-        to: 'https://git.leicraftmc.de/LeiOS/',
-        icon: 'i-lucide-git-branch',
-        title: 'Main Repository',
-        subtitle: 'git.leicraftmc.de/LeiOS'
-    },
-    {
-        to: 'https://github.com/LeiOS-project',
-        icon: 'i-lucide-github',
-        title: 'GitHub Mirror',
-        subtitle: 'github.com/LeiOS-project'
-    }
-]
+	{
+		to: "https://git.leicraftmc.de/LeiOS/",
+		icon: "i-lucide-git-branch",
+		title: "Main Repository",
+		subtitle: "git.leicraftmc.de/LeiOS",
+	},
+	{
+		to: "https://github.com/LeiOS-project",
+		icon: "i-lucide-github",
+		title: "GitHub Mirror",
+		subtitle: "github.com/LeiOS-project",
+	},
+];
 </script>
 
 <template>
@@ -226,7 +238,11 @@ const sourceLinks = [
                                 <NuxtLink to="https://blog.leicraftmc.de/tag/leios/" target="_blank" class="text-sky-400 hover:underline">
                                     blog
                                 </NuxtLink>
-                                for release announcements and updates.
+                                for release announcements and updates, and the
+                                <NuxtLink to="/docs/getting-started/installation" class="text-sky-400 hover:underline">
+                                    installation guide
+                                </NuxtLink>
+                                to get ready.
                             </p>
                         </div>
                     </UCard>
@@ -275,7 +291,7 @@ const sourceLinks = [
                             card.color === 'green' ? 'hover:border-green-400/50' : ''
                         ]"
                     >
-                        <NuxtLink :to="card.to" target="_blank" class="block space-y-4 p-4 text-center no-underline">
+                        <NuxtLink :to="card.to" :target="card.to.startsWith('http') ? '_blank' : undefined" class="block space-y-4 p-4 text-center no-underline">
                             <div
                                 :class="[
                                     'mx-auto flex h-16 w-16 items-center justify-center rounded-xl',
@@ -299,7 +315,7 @@ const sourceLinks = [
                             <UButton color="neutral" variant="soft" size="sm" class="pointer-events-none">
                                 {{ card.buttonText }}
                                 <template #trailing>
-                                    <UIcon name="i-lucide-external-link" class="text-sm" />
+                                    <UIcon :name="card.to.startsWith('http') ? 'i-lucide-external-link' : 'i-lucide-arrow-right'" class="text-sm" />
                                 </template>
                             </UButton>
                         </NuxtLink>

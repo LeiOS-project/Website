@@ -1,75 +1,68 @@
-# Nuxt Minimal Starter
+# LeiOS Website
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+The website and documentation for [LeiOS](https://www.leios.dev), a Debian-based Linux distribution.
+It is a fully static site built from the LeiCraftMC `static-site-with-docs` template.
+
+## Stack
+
+- Nuxt 4 (`app/` srcDir)
+- NuxtUI v4 + Tailwind v4 (CSS-first)
+- `@nuxt/content` for the Markdown docs
+- `nuxt generate` for static output (`nitro.preset: "static"`)
+- Biome formatter/linter
+- AGPL-3.0
 
 ## Setup
 
-Make sure to install dependencies:
-
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
 bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
 bun run dev
 ```
 
-## Production
+The dev server runs on port **12155**.
 
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
+## Generate and deploy
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+bun run generate   # → .output/public/
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+`.output/public/` is plain HTML, CSS, JS and assets: no server runtime is needed. On the default
+branch, GitLab CI (`.gitlab/ci/build.yml`) generates the site and rsyncs `.output/public/` to the
+web host via `.gitlab/ci/deploy.sh`. Set the CI variables `DEPLOY_REMOTE_USER`,
+`DEPLOY_REMOTE_PASSWORD`, `DEPLOY_REMOTE_HOST` and `DEPLOY_REMOTE_DIR`.
+
+`public/.htaccess` configures Apache (clean URLs, trailing-slash redirects, the 404 page). On
+another host, serve `.output/public/` and replicate those rules.
+
+## Scripts
+
+- `bun run dev` — dev server
+- `bun run generate` — static generation
+- `bun run preview` — preview the generated site
+- `bun run typecheck` — TypeScript check
+- `bun run check` — Biome check
+- `bun run format` — format with Biome
+- `bun test` — tests (docs navigation ↔ content ↔ sitemap, code-block icons)
+
+## Docs
+
+Docs live in `content/docs/` as Markdown files with `title`, `description` and `navigation.title`
+frontmatter. To add a page:
+
+1. Create the `.md` file under `content/docs/`.
+2. Register it in `app/data/docs.ts` (sidebar + prev/next).
+3. Add it to `public/static/utils/sitemap.xml`.
+
+`bun test` fails if these three get out of sync.
+
+## Structure
+
+See the LeiCraftMC style guide:
+
+- [docs/01-project-structure.md](https://git.leicraftmc.de/LeiCraftMC/Style-Guides/-/blob/main/docs/01-project-structure.md)
+- [docs/06-frontend-nuxt.md](https://git.leicraftmc.de/LeiCraftMC/Style-Guides/-/blob/main/docs/06-frontend-nuxt.md)
+
+## License
+
+AGPL-3.0

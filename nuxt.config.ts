@@ -1,109 +1,80 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+// Static site + docs (nuxt generate). Nuxt 4 (app/ srcDir is the default).
 export default defineNuxtConfig({
-	compatibilityDate: '2025-07-15',
+	compatibilityDate: "2026-09-01",
 	devtools: { enabled: true },
-	modules: [
-		'@nuxt/ui',
-		'@nuxtjs/sitemap',
-		'@nuxtjs/robots'
-	],
-
-	ssr: true,
-
-	css: [
-		'~/assets/css/main.css',
-	],
-
-	// @ts-ignore - Site config für Sitemap und SEO
-	site: {
-		url: 'https://leios.dev',
-		name: 'LeiOS',
-	},
+	modules: ["@nuxt/ui", "@nuxt/content"],
 
 	app: {
 		head: {
-			title: 'LeiOS - Debian-based OS for Developers',
 			htmlAttrs: {
-				lang: 'en',
-				class: 'dark'
+				lang: "en-US",
 			},
+			charset: "utf-8",
+			viewport: "width=device-width, initial-scale=1",
 			meta: [
-				{ charset: 'utf-8' },
-				{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
-				{ name: 'description', content: 'LeiOS is a Debian-based operating system focused on stability, great performance, and an exceptional out-of-box experience.' },
-				{ name: 'theme-color', content: '#0ea5e9' },
-				// Open Graph
-				{ property: 'og:type', content: 'website' },
-				{ property: 'og:site_name', content: 'LeiOS' },
-				{ property: 'og:locale', content: 'en_US' },
-				// Twitter Card
-				{ name: 'twitter:card', content: 'summary_large_image' },
-				// Additional SEO
-				{ name: 'author', content: 'LeiOS Project' },
-				{ name: 'robots', content: 'index, follow' },
-				{ name: 'keywords', content: 'LeiOS, Linux, Debian, Operating System, Developer OS, Open Source, Linux Distribution' }
-			],
-			link: [
-				{ rel: 'canonical', href: 'https://www.leios.dev' },
-				{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-			],
-			script: [
+				{ name: "author", content: "LeiOS Project" },
+				{ name: "robots", content: "index, follow, max-image-preview:large" },
+				{ name: "theme-color", content: "#0ea5e9" },
 				{
-					type: 'application/ld+json',
-					innerHTML: JSON.stringify({
-						'@context': 'https://schema.org',
-						'@type': 'SoftwareApplication',
-						name: 'LeiOS',
-						applicationCategory: 'OperatingSystem',
-						operatingSystem: 'Linux',
-						description: 'LeiOS is a Debian-based operating system focused on stability, great performance, and an exceptional out-of-box experience.',
-						url: 'https://www.leios.dev',
-						offers: {
-							'@type': 'Offer',
-							price: '0',
-							priceCurrency: 'USD'
-						},
-						author: {
-							'@type': 'Organization',
-							name: 'LeiOS Project',
-							url: 'https://www.leios.dev'
-						}
-					})
-				}
-			]
-		}
+					name: "keywords",
+					content:
+						"LeiOS, Linux, Debian, Operating System, Developer OS, Open Source, Linux Distribution",
+				},
+				{ property: "og:type", content: "website" },
+				{ property: "og:site_name", content: "LeiOS" },
+				{ property: "og:locale", content: "en_US" },
+				{ name: "twitter:card", content: "summary_large_image" },
+			],
+			link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+		},
 	},
 
-	// Sitemap Konfiguration
-	sitemap: {
-		strictNuxtContentPaths: true,
-		xslColumns: [
-			{ label: 'URL', width: '50%' },
-			{ label: 'Last Modified', select: 'sitemap:lastmod', width: '25%' },
-			{ label: 'Priority', select: 'sitemap:priority', width: '12.5%' },
-			{ label: 'Change Frequency', select: 'sitemap:changefreq', width: '12.5%' }
-		]
+	colorMode: {
+		preference: "dark",
+		fallback: "dark",
+		classSuffix: "",
 	},
 
-	// Robots.txt Konfiguration
-	robots: {
-		sitemap: '/sitemap.xml'
+	ssr: true,
+
+	css: ["~/assets/css/main.css"],
+
+	runtimeConfig: {
+		public: {
+			// Public site origin; `usePageSeo` resolves canonical and og:url against it.
+			appUrl: "https://www.leios.dev",
+		},
+	},
+
+	// Bundle every icon at build time; "none" never fetches from the Iconify API at runtime.
+	// The scan also covers `.ts` files (e.g. `app/data/`), which the default patterns skip.
+	icon: {
+		provider: "none",
+		clientBundle: {
+			scan: {
+				globInclude: ["app/**/*.{vue,ts}", "content/**/*.md"],
+			},
+		},
+	},
+
+	routeRules: {
+		"/__nuxt_content/**": { prerender: false },
 	},
 
 	nitro: {
-		preset: 'bun',
+		preset: "static",
 		prerender: {
 			crawlLinks: true,
-			routes: ['/']
-		}
+			routes: ["/"],
+			ignore: ["/__nuxt_content/**"],
+		},
 	},
 
 	vite: {
 		server: {
-			allowedHosts: [
-				"leios-website-test.tun.is-on.net"
-			]
+			allowedHosts: ["leios-website-test.tun.is-on.net"],
+		},
+	},
 
-		}
-	}
+	telemetry: false,
 });

@@ -1,8 +1,16 @@
+/*
+ * main.css — Tailwind v4 CSS-first entry (no tailwind.config.js).
+ *
+ * Dark-only (no light theme, no toggle) — pinned via `colorMode` in nuxt.config.ts.
+ * `@plugin "@tailwindcss/typography";` enables `prose` styling for the docs.
+ * See the LeiCraftMC Style Guides, docs/06-frontend-nuxt.md and docs/15-design-system.md.
+ */
 @import "tailwindcss";
 @import "@nuxt/ui";
+@plugin "@tailwindcss/typography";
 
 @theme {
-    --font-sans: "Inter", "Rubik", sans-serif;
+	--font-sans: "Inter", "Rubik", sans-serif;
 }
 
 /* ===========================
@@ -10,10 +18,42 @@
    =========================== */
 
 :root {
-    color-scheme: dark;
+	color-scheme: dark;
 }
 
 html {
-    scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
+.main-bg-color {
+	background-color: rgb(2 6 23);
+}
+
+/* ===========================
+   Docs prose
+   =========================== */
+
+/* Nuxt UI prose headings wrap their text in an anchor link — don't underline it like body links. */
+.prose :where(h1, h2, h3, h4) a {
+	text-decoration: none;
+}
+
+/* Nuxt UI styles inline code itself; drop the typography plugin's literal backticks. */
+.prose :where(code)::before,
+.prose :where(code)::after {
+	content: none;
+}
+
+/* Let long inline code (URLs, env assignments) wrap on narrow screens. */
+.prose :where(:not(pre) > code) {
+	max-width: 100%;
+	overflow-wrap: anywhere;
+}
+
+/*
+ * In table cells, `anywhere` lets the table shrink a column below its shortest word (`test|ing`).
+ * `break-word` still wraps long values but keeps short ones whole; the table scrolls instead.
+ */
+.prose :where(td) :where(code) {
+	overflow-wrap: break-word;
+}

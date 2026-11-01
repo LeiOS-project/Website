@@ -57,6 +57,32 @@ export default defineNuxtConfig({
 		},
 	},
 
+	// Nuxt Content's default languages plus the ones the docs use beyond them (APT sources, PowerShell).
+	content: {
+		build: {
+			markdown: {
+				highlight: {
+					langs: [
+						"js",
+						"jsx",
+						"json",
+						"ts",
+						"tsx",
+						"vue",
+						"css",
+						"html",
+						"bash",
+						"md",
+						"mdc",
+						"yaml",
+						"ini",
+						"powershell",
+					],
+				},
+			},
+		},
+	},
+
 	routeRules: {
 		"/__nuxt_content/**": { prerender: false },
 	},

@@ -1,100 +1,146 @@
 ---
 title: "Installation"
-description: "Write the LeiOS ISO to a USB drive, boot the live system, and install LeiOS with Calamares."
+description: "Install LeiOS with the graphical installer: language, keyboard, disk setup, encryption and your user account, step by step."
 navigation:
   title: Installation
 ---
 
 # Installation
 
-Installing LeiOS takes four steps: download the ISO, write it to a USB drive, boot from it, and run
-the installer. Check the [system requirements](/docs/getting-started/system-requirements) first.
+Installing LeiOS takes about 15 to 30 minutes. You click through a few pages in the installer,
+the installer copies LeiOS to your disk, and you restart into your new system.
+
+Before you start, you need:
+
+- a [LeiOS USB stick](/docs/getting-started/create-a-bootable-usb), started into the
+  [live system](/docs/getting-started/booting-and-secure-boot);
+- a laptop on its power cable;
+- a **backup of your files** if the computer has data on it.
 
 ::warning
-Installing LeiOS can erase the disk you install it on. Back up anything you want to keep before you
-start.
+Installing LeiOS can erase the disk you install it on. If you want to keep Windows, follow the
+[Dual Boot guide](/docs/getting-started/dual-boot) instead of erasing the disk.
 ::
 
 ::steps{level="2"}
 
-## Download the ISO
+## Start the installer
 
-:::callout{icon="i-lucide-construction" color="warning"}
-Public ISO downloads are coming soon. Follow the
-[LeiOS blog](https://blog.leicraftmc.de/tag/leios/){target="_blank"} or join the
-[Discord](https://discord.gg/8YC5BXjCc5){target="_blank"} to hear about the first release. Until
-then, you can [build the ISO yourself](/docs/developers/building-the-iso).
-:::
+In the live system, double-click **Install LeiOS** on the desktop. The installer checks your
+computer first (enough disk space and memory, power connected). See
+[System Requirements](/docs/getting-started/system-requirements#what-the-installer-checks).
 
-The image is a hybrid ISO named like `leios-<version>-amd64.hybrid.iso`. It works both as a DVD
-image and as a raw USB image.
+## Welcome
 
-## Write it to a USB drive
+Choose the **language of the installer**, then click **Next**.
 
-Because the image is a hybrid ISO, you can write it to a USB drive byte for byte. Everything on the
-drive will be erased.
+## Location
 
-:::tabs
+Click your region on the map or pick it from the lists. This sets your **time zone**, the
+**system language** and the **formats** for dates, numbers and currency. You can change all of
+them later in *System Settings → Region & Language*.
 
-::::tabs-item{label="Linux" icon="i-lucide-terminal"}
-Find the device name of your USB drive with `lsblk`, then write the image. Double-check the device
-name: writing to the wrong one destroys its data.
+Living in Germany but prefer an English system? Choose English as the language and **English
+(Germany)** (`en_DE.UTF-8`) as the format: English text with German dates, numbers and currency.
 
-```bash
-lsblk
-sudo dd if=leios-<version>-amd64.hybrid.iso of=/dev/sdX bs=4M status=progress oflag=sync
-```
+## Keyboard
 
-Graphical tools such as KDE's **ISO Image Writer** or **GNOME Disks** work too.
-::::
+Choose your **keyboard layout** and type a few characters, especially `@`, `"`, `y` and `z`, in
+the test field to check it. You can add more layouts later.
 
-::::tabs-item{label="Windows" icon="i-lucide-monitor"}
-Use [Rufus](https://rufus.ie){target="_blank"} or
-[balenaEtcher](https://etcher.balena.io){target="_blank"}. If Rufus asks how to write a hybrid
-image, choose **DD Image** mode.
-::::
+## Partitions
 
-::::tabs-item{label="macOS" icon="i-lucide-laptop"}
-Use [balenaEtcher](https://etcher.balena.io){target="_blank"}: select the ISO, select the USB
-drive, and click **Flash**.
-::::
+Choose the disk to install on and how to use it:
 
-:::
+| Option | What it does | Use it when |
+| --- | --- | --- |
+| **Erase disk** | Deletes everything on the disk and installs LeiOS on all of it. | You want LeiOS only, on a computer whose data you have backed up. |
+| **Install alongside** | Shrinks an existing system, such as Windows, and installs LeiOS in the space it frees. You choose the sizes by dragging a divider. | You want to keep Windows. See [Dual Boot](/docs/getting-started/dual-boot). |
+| **Replace a partition** | Installs LeiOS into one partition you select. Only that partition is erased. | You have already made room for LeiOS. |
+| **Manual partitioning** | You create and assign partitions yourself. | You know what partitions and mount points are. |
 
-## Boot the live system
+Check the **before and after** preview at the bottom of the page: the installer only changes what
+it shows there, and only after you confirm on the summary page.
 
-Plug in the USB drive, restart, and open your computer's boot menu. The key depends on the
-manufacturer; common ones are :kbd{value="F12"}, :kbd{value="F11"}, :kbd{value="F8"} and
-:kbd{value="Esc"}. Choose the USB drive.
+### Encrypt your disk
 
-LeiOS starts a live system that runs entirely from the USB drive without changing your disk. The
-boot menu also has a **Live system (German)** entry if you prefer a German session.
+With **Erase disk**, you can tick **Encrypt system** and enter a passphrase. Everything on the
+disk is then encrypted, and LeiOS asks for the passphrase every time it starts. If your laptop is
+lost or stolen, nobody can read your files without it.
 
-Use the live system to check that your Wi-Fi, graphics, sound and other hardware work before you
-install.
+::caution
+If you forget the encryption passphrase, your data cannot be recovered, not even by us. Write it
+down and keep it in a safe place.
+::
 
-## Run the installer
+### Swap
 
-Double-click **Install LeiOS** on the live desktop. This starts the Calamares installer, which
-walks you through these pages:
+LeiOS already uses fast, compressed swap in memory (zram), so you don't need a swap partition. If
+the installer offers swap options, **No swap** is fine. Only choose an option with **hibernate** if
+you want to hibernate your computer.
 
-1. **Welcome.** Choose the installer language. The requirement checks run here.
-2. **Location.** Choose your region, time zone and system language.
-3. **Keyboard.** Choose and test your keyboard layout.
-4. **Partitions.** Erase a disk, install alongside another system, or partition manually. You can
-   also turn on disk encryption here.
-5. **Users.** Create your user account and set the computer's name.
-6. **Summary.** Review your choices. Nothing is written to disk until you confirm.
+### Manual partitioning
 
-When the installer has finished, restart and remove the USB drive.
+For a UEFI computer, LeiOS needs at least:
+
+| Partition | Size | File system | Mount point |
+| --- | --- | --- | --- |
+| EFI system partition | 300 MB or more (an existing one is fine, keep it) | FAT32 | `/boot/efi` |
+| Root | 15 GB or more | ext4 (or Btrfs) | `/` |
+
+A separate `/home` partition is optional. On a BIOS computer, no EFI system partition is needed.
+
+## Users
+
+Enter:
+
+- **Your name**, as it is shown on the login screen.
+- **A login name**, lowercase, used for your home folder (`/home/<login name>`).
+- **The computer's name**, which other devices on your network see.
+- **A password**, twice. It protects your account and is needed for administrative tasks such as
+  installing updates.
+
+Tick **Log in automatically without asking for the password** only if nobody else has access to
+the computer.
+
+Your account is the computer's administrator account: it can install software and change system
+settings with your own password. LeiOS doesn't set a separate root password.
+
+## Summary
+
+Check everything once more, especially the disk changes. **Nothing is written to the disk until
+you click Install.** Then confirm.
+
+The installer copies LeiOS to the disk, sets up the boot loader and removes the installer itself
+from the new system. This takes 10 to 20 minutes, depending on your disk and USB stick.
+
+## Restart
+
+When the installation is done, leave **Restart now** ticked and click **Done**. Remove the USB
+stick when the screen goes dark, so the computer starts from the disk.
 
 ::
 
-## After the installation
+## The first start
 
-- **No root password is set.** Your user account is in the `sudo` group, so use `sudo` for
-  administrative tasks.
-- **The installer removes itself.** The live-system packages and Calamares are uninstalled from the
-  new system automatically.
-- **Next step:** follow [First Steps](/docs/getting-started/first-steps) to update your system and
-  install software.
+1. **Boot menu.** You see the LeiOS boot menu. It starts LeiOS automatically. With Windows
+   installed too, you choose the system here. See [Dual Boot](/docs/getting-started/dual-boot).
+2. **Encryption passphrase.** If you encrypted the disk, enter its passphrase.
+3. **Login screen.** Log in with your password.
+4. **Welcome Center.** On your first login, the Welcome Center introduces the desktop.
+
+Next, follow [First Steps](/docs/getting-started/first-steps) to install updates, set up apps and
+make LeiOS yours.
+
+## If something goes wrong
+
+**The installer says there isn't enough space.**
+LeiOS needs at least 15 GB. Choose another disk, or make more room. See
+[Dual Boot](/docs/getting-started/dual-boot#make-room-for-leios).
+
+**The computer starts the USB stick again after the restart.**
+Remove the stick, or choose your disk in the boot menu. In the firmware boot order, the entry for
+your installed system is called **leios** or **LeiOS**.
+
+**The installed system doesn't start or shows a black screen.**
+See [Troubleshooting](/docs/usage/troubleshooting#leios-doesnt-start).

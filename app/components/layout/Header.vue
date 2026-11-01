@@ -1,24 +1,22 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from "@nuxt/ui";
 import LeiOSLogo from "~/components/img/LeiOSLogo.vue";
+import { siteLinks } from "~/data/links";
 
 const route = useRoute();
 
 const links = computed<NavigationMenuItem[]>(() => [
 	{
 		label: "Features",
-		to: "/#features",
-		exactHash: true,
+		to: "/features",
+	},
+	{
+		label: "Switch from Windows",
+		to: "/switch-from-windows",
 	},
 	{
 		label: "Download",
-		to: "/#download",
-		exactHash: true,
-	},
-	{
-		label: "Community",
-		to: "/#community",
-		exactHash: true,
+		to: "/download",
 	},
 	{
 		label: "Docs",
@@ -27,20 +25,20 @@ const links = computed<NavigationMenuItem[]>(() => [
 	},
 	{
 		label: "Developer Hub",
-		to: "https://hub.leios.dev",
+		to: siteLinks.hub,
 		target: "_blank",
 	},
 	{
 		label: "Blog",
-		to: "https://blog.leicraftmc.de/tag/leios/",
+		to: siteLinks.blog,
 		target: "_blank",
 	},
 ]);
 
 const socialLinks = [
-	{ icon: "i-lucide-gitlab", to: "https://git.leicraftmc.de/LeiOS", label: "GitLab" },
-	{ icon: "i-lucide-github", to: "https://github.com/LeiOS-project", label: "GitHub" },
-	{ icon: "i-lucide-message-circle", to: "https://discord.gg/8YC5BXjCc5", label: "Discord" },
+	{ icon: "i-lucide-gitlab", to: siteLinks.git, label: "GitLab" },
+	{ icon: "i-lucide-github", to: siteLinks.github, label: "GitHub" },
+	{ icon: "i-lucide-message-circle", to: siteLinks.discord, label: "Discord" },
 ];
 
 const mobileLinks = computed<NavigationMenuItem[][]>(() => [
@@ -82,7 +80,7 @@ const mobileLinks = computed<NavigationMenuItem[][]>(() => [
 					class="transition-transform duration-200 hover:scale-110"
 				/>
 			</div>
-			<UButton to="/#download" color="primary" variant="solid" class="hidden font-medium sm:inline-flex">
+			<UButton to="/download" color="primary" variant="solid" class="hidden font-medium sm:inline-flex">
 				Download
 			</UButton>
 		</template>

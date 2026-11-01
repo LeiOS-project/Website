@@ -1,23 +1,32 @@
 <script setup lang="ts">
 import type { FooterColumn } from "@nuxt/ui";
+import { siteLinks } from "~/data/links";
 
 const socialLinks = [
-	{ icon: "i-lucide-gitlab", to: "https://git.leicraftmc.de/LeiOS", label: "GitLab" },
-	{ icon: "i-lucide-github", to: "https://github.com/LeiOS-project", label: "GitHub" },
-	{ icon: "i-lucide-message-circle", to: "https://discord.gg/8YC5BXjCc5", label: "Discord" },
+	{ icon: "i-lucide-gitlab", to: siteLinks.git, label: "GitLab" },
+	{ icon: "i-lucide-github", to: siteLinks.github, label: "GitHub" },
+	{ icon: "i-lucide-message-circle", to: siteLinks.discord, label: "Discord" },
+];
+
+const leiosLinks = [
+	{ label: "Features", to: "/features" },
+	{ label: "Switch from Windows", to: "/switch-from-windows" },
+	{ label: "Download", to: "/download" },
+	{ label: "FAQ", to: "/docs/faq" },
 ];
 
 const resourceLinks = [
 	{ label: "Documentation", to: "/docs" },
-	{ label: "Blog", to: "https://blog.leicraftmc.de/tag/leios/", target: "_blank" },
-	{ label: "Source Code", to: "https://git.leicraftmc.de/LeiOS/", target: "_blank" },
-	{ label: "GitHub", to: "https://github.com/LeiOS-project", target: "_blank" },
+	{ label: "Installation Guide", to: "/docs/getting-started/installation" },
+	{ label: "Developer Hub", to: siteLinks.hub, target: "_blank" },
+	{ label: "Source Code", to: siteLinks.git, target: "_blank" },
 ];
 
 const communityLinks = [
-	{ label: "Discord", to: "https://discord.gg/8YC5BXjCc5", target: "_blank" },
+	{ label: "Discord", to: siteLinks.discord, target: "_blank" },
+	{ label: "Blog", to: siteLinks.blog, target: "_blank" },
+	{ label: "Report a Bug", to: "/docs/community/reporting-bugs" },
 	{ label: "Contribute", to: "/docs/community/contributing" },
-	{ label: "Developer Hub", to: "https://hub.leios.dev", target: "_blank" },
 ];
 
 const legalLinks = [
@@ -26,6 +35,7 @@ const legalLinks = [
 ];
 
 const footerColumns: FooterColumn[] = [
+	{ label: "LeiOS", children: leiosLinks },
 	{ label: "Resources", children: resourceLinks },
 	{ label: "Community", children: communityLinks },
 	{ label: "Legal", children: legalLinks },
@@ -42,8 +52,8 @@ const currentYear = new Date().getFullYear();
         bottom: "p-0 lg:p-0 mt-8"
     }'>
         <UFooterColumns :columns="footerColumns" :ui="{
-            root: 'grid gap-8 sm:grid-cols-2 xl:grid-cols-2 w-full',
-            center: 'xl:col-span-1 grid',
+            root: 'grid gap-10 w-full lg:grid-cols-3',
+            center: 'grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-2',
             label: 'text-slate-100 font-semibold text-base',
             link: 'text-slate-400 hover:text-sky-400 text-sm sm:text-base inline-block py-1 transition-colors',
             left: 'mb-0'
@@ -53,8 +63,8 @@ const currentYear = new Date().getFullYear();
                     <span
                         class="inline-block text-2xl font-bold bg-linear-to-tr from-sky-400 to-sky-200 bg-clip-text text-transparent">LeiOS</span>
                     <p class="text-slate-300/80 text-base leading-relaxed md:max-w-3xl">
-                        A Debian-based operating system focused on stability, performance, and an exceptional out-of-box
-                        experience. Built by developers, for everyone.
+                        A free operating system built on Debian with a polished KDE Plasma desktop. Fast, secure and
+                        easy from the first boot. Built by developers, for everyone.
                     </p>
                     <div class="flex gap-2 pt-2">
                         <UButton v-for="social in socialLinks" :key="social.label" :to="social.to" target="_blank"

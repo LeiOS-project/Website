@@ -68,6 +68,9 @@ and follow the [installation guide](/docs/getting-started/installation) until yo
 The installer leaves the Windows partition alone and adds LeiOS to the existing EFI system
 partition, next to Windows' boot loader.
 
+On the next page, **Dual Boot**, keep **Enable dual boot detection** selected. It makes the LeiOS
+boot menu list Windows, too.
+
 ## Choose a system at startup
 
 After installing, the computer starts the **LeiOS boot menu**. It lists LeiOS and **Windows Boot
@@ -76,16 +79,19 @@ few seconds.
 
 ### Windows is missing from the boot menu
 
-The boot menu finds other systems with a tool called `os-prober`. If Windows doesn't show up, turn
-it on and update the menu once:
+The boot menu finds other systems with a tool called `os-prober`, which you turn on with **Enable
+dual boot detection** in the installer. If you turned it off, or Windows still doesn't show up,
+turn it on and update the menu:
 
 ```bash
-echo 'GRUB_DISABLE_OS_PROBER=false' | sudo tee /etc/default/grub.d/90-os-prober.cfg
+sudo mkdir -p /etc/default/grub.d
+echo 'GRUB_DISABLE_OS_PROBER=false' | sudo tee /etc/default/grub.d/90-leios-os-prober.cfg
 sudo update-grub
 ```
 
 Restart, and Windows Boot Manager is in the menu. Until then, you can always start Windows from
-your computer's boot menu key.
+your computer's boot menu key. To turn dual boot detection off again, write `true` instead of
+`false` and run `sudo update-grub`.
 
 ### Change the default system or the waiting time
 

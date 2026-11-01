@@ -90,6 +90,19 @@ For a UEFI computer, LeiOS needs at least:
 
 A separate `/home` partition is optional. On a BIOS computer, no EFI system partition is needed.
 
+## Dual Boot
+
+Choose whether the LeiOS boot menu should also list the other operating systems on this computer,
+such as Windows:
+
+- **Enable dual boot detection (recommended)** is preselected. The boot menu shows LeiOS and your
+  other systems, and you pick one every time the computer starts. Keep this if you keep Windows,
+  or if you're not sure.
+- **Disable dual boot detection** shows only LeiOS. Choose it if LeiOS is the only system on the
+  computer.
+
+You can change this later; see [Dual Boot with Windows](/docs/getting-started/dual-boot#windows-is-missing-from-the-boot-menu).
+
 ## Users
 
 Enter:

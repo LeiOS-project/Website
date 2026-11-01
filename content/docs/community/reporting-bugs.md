@@ -31,8 +31,9 @@ dpkg -S /usr/bin/dolphin
 # Which repository the installed version of a package comes from
 apt policy dolphin
 
-# Which apps are installed as Flatpaks
+# Which apps are installed as Flatpaks or Snaps
 flatpak list --app
+snap list
 ```
 
 In the output of `apt policy`, the line marked with `***` is the installed version, and the lines
@@ -90,6 +91,7 @@ The LeiOS look is split into several packages:
 | A package from a publisher on the Developer Hub | The publisher. Its **Maintainer contact** is on its publisher page on the Hub. For malware, spam or impersonation, use the **Report** button on the Hub instead. |
 | A package from Debian | Debian, see [Reporting to Debian](#reporting-to-debian). |
 | A Flatpak app | The app's developers, see [Reporting a Flatpak app](#reporting-a-flatpak-app). |
+| A Snap app | The app's developers, see [Reporting a Snap app](#reporting-a-snap-app). |
 | Firefox or Firefox Developer Edition | Mozilla, at [bugzilla.mozilla.org](https://bugzilla.mozilla.org){target="_blank"}. |
 
 Not sure where your bug belongs? Ask on [Discord](https://discord.gg/8YC5BXjCc5){target="_blank"}.
@@ -180,6 +182,18 @@ flatpak list --app
 flatpak run <application-id>
 ```
 
+### Snap apps
+
+```bash
+snap version
+
+# Installed snaps with their version, revision and channel
+snap list
+
+# Start the app from Konsole to see its messages
+snap run <snap-name>
+```
+
 Long output is easier to share as a file, for example
 `sudo journalctl -b -p warning > journal.txt`.
 Attach the file to the issue.
@@ -251,6 +265,13 @@ the app's ID with `flatpak list --app`, then:
   [Flathub](https://flathub.org){target="_blank"} links to its website and tracker.
 - **Problems with the Flatpak packaging** of a Flathub app, for example missing permissions or an
   outdated build, go to its Flathub repository at `https://github.com/flathub/<application-id>`.
+
+## Reporting a Snap app
+
+Like Flatpaks, Snaps run the same on every distribution. Run `snap info <snap-name>`: it shows the
+app's publisher and, in most cases, a contact or website. Report bugs in the app there. Problems
+with Snap itself, for example snaps that don't start at all, go to Debian's `snapd` package with
+`reportbug snapd`.
 
 Problems with installing or updating apps through **Discover** itself are LeiOS or KDE bugs. Report
 them as described above.

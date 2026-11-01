@@ -22,7 +22,7 @@ When updates are available, an **update icon** appears in the system tray.
 3. If Discover says a restart is needed, restart when it suits you.
 
 Discover updates everything in one go: the system and its apps from Debian and LeiOS, your
-Flatpak apps, and device firmware where available.
+Flatpak apps, and device firmware where available. Snap apps update themselves in the background.
 
 Choose how often LeiOS checks for updates and notifies you in *System Settings â†’ Software Update*.
 
@@ -32,6 +32,7 @@ Choose how often LeiOS checks for updates and notifies you in *System Settings â
 sudo apt update          # fetch the lists of available updates
 sudo apt full-upgrade    # install them
 flatpak update           # update Flatpak apps
+sudo snap refresh        # update Snap apps now, instead of waiting for the automatic update
 ```
 
 `full-upgrade` also installs new dependencies and removes packages that conflict with an update,
@@ -56,6 +57,7 @@ so the new versions are used. Discover tells you when a restart is needed.
 | New LeiOS releases, LeiOS packages and themes | The [LeiOS repository](/docs/usage/package-management) | With every LeiOS release on your [channel](/docs/usage/release-channels) |
 | Firefox and Firefox Developer Edition | Mozilla's repository | With every Firefox release |
 | Flatpak apps | Flathub | Whenever the app makers release |
+| Snap apps | The Snap Store | Automatically, a few times a day |
 | Firmware for supported devices | The vendors, through LVFS | When vendors publish it |
 
 ## Firmware updates

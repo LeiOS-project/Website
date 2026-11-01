@@ -19,7 +19,8 @@ everyday apps, see [Installing Apps](/docs/usage/installing-apps).
 | **The LeiOS repository** | LeiOS's own packages: the LeiOS release information, the theme and system packages, and packages published by developers on the [Developer Hub](/docs/developers/developer-hub). | `/etc/apt/sources.list.d/leios.sources` |
 | **Mozilla** | Firefox and Firefox Developer Edition, straight from Mozilla. | `/etc/apt/sources.list.d/mozilla.sources` |
 
-Flatpak apps from Flathub are managed separately, with `flatpak` and Discover.
+Flatpak apps from Flathub and Snap apps from the Snap Store are managed separately, with `flatpak`,
+`snap` and Discover. See [Installing Apps](/docs/usage/installing-apps).
 
 ## Everyday commands
 

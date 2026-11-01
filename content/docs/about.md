@@ -10,8 +10,8 @@ navigation:
 LeiOS is a free, open-source operating system for PCs and laptops. It takes **Debian**, one of the
 oldest and most trusted Linux distributions, and adds what you would otherwise set up by hand after
 installing it: a polished **KDE Plasma** desktop with its own look, firmware for common hardware,
-everyday apps, performance tuning for computers with little memory, and its own package repository
-with continuous LeiOS releases.
+everyday apps, an app store with Flathub and the Snap Store ready to use, performance tuning for
+computers with little memory, and its own package repository with continuous LeiOS releases.
 
 ## Who LeiOS is for
 
@@ -32,7 +32,7 @@ with continuous LeiOS releases.
 | **Kernel** | Debian's Linux 6.12 LTS kernel |
 | **Desktop** | KDE Plasma 6 with the LeiOS theme (Wayland, X11 session available) |
 | **Installer** | Calamares, with optional full-disk encryption |
-| **Software** | APT with the Debian archive and the LeiOS repository; Flatpak and Flathub; Discover as the app store |
+| **Software** | APT with the Debian archive and the LeiOS repository; Flatpak with Flathub; Snap with the Snap Store; Discover as the app store |
 | **Releases** | Debian's security and bug fixes, plus continuous LeiOS releases in a `stable` and a `testing` channel |
 | **Boot** | UEFI with Secure Boot, or BIOS |
 | **Images** | 64-bit x86 (`amd64`) |

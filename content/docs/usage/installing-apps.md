@@ -1,6 +1,6 @@
 ---
 title: "Installing Apps"
-description: "Install apps on LeiOS with Discover, the built-in app store: Flathub and Debian as sources, why Flatpak apps are recommended, and how to use the terminal instead."
+description: "Install apps on LeiOS with Discover, the built-in app store: Flathub, the Snap Store and Debian as sources, why Flatpak apps are recommended, and how to use the terminal instead."
 navigation:
   title: Installing Apps
 ---
@@ -22,23 +22,16 @@ To remove it, open it in Discover and click **Remove**.
 
 ## Where apps come from
 
-LeiOS has two main sources of software:
+Discover shows apps from three sources, all set up out of the box:
 
 | Source | What it has | Updated |
 | --- | --- | --- |
 | **Flathub** | Thousands of desktop apps: Spotify, Discord, Steam, VS Code, OBS, Zoom, GIMP, Krita, Thunderbird and many more. Apps run as **Flatpaks**. | Directly by the app makers or Flathub's maintainers, usually soon after a new version is out. |
+| **Snap Store** | Apps packaged as **Snaps**, including some that aren't on Flathub. | By the app makers, through the Snap Store. |
 | **Debian and LeiOS** | The operating system itself, the desktop, and tens of thousands of programs, libraries and tools. Installed as **.deb packages** with APT. | Tested versions from Debian 13, with security fixes. LeiOS's own packages come from the [LeiOS repository](/docs/usage/package-management). |
 
-### Setting up Flathub
-
-Discover can show Flathub apps out of the box, but Flathub itself has to be turned on once. Open
-**Konsole** and run:
-
-```bash
-sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-```
-
-Close and reopen Discover. You only do this once.
+The first time you open Discover, it downloads the catalogs of these sources. That can take a
+minute.
 
 ## Why we recommend Flathub for apps
 
@@ -57,10 +50,10 @@ the Flathub version when Discover offers more than one. Here's why:
 Use **Debian packages** for system tools, drivers, command-line programs and development tools,
 and for anything that has to integrate deeply with the system.
 
-::tip
-If an app is available from several sources, Discover lets you pick the source on the app's page.
-Flatpak apps are marked with **Flathub** as their source.
-::
+If an app is available from several sources, Discover **preselects the Flathub version**. You can
+pick another source on the app's page, or change the default source in Discover's **Settings**.
+
+Use the **Snap Store** for apps that aren't on Flathub, or when an app maker recommends their Snap.
 
 ## Flatpak permissions
 
@@ -68,9 +61,10 @@ Sandboxed apps ask for access to things such as your files or your camera throug
 dialogs, for example when you open a file. Some apps declare broader permissions up front, and
 Discover shows them on the app's page under **Permissions**.
 
-To change an app's permissions afterwards, install **Flatseal** from Discover. It lists every
-Flatpak app with switches for files, devices, network and more. (If you prefer a page in System
-Settings, install the `kde-config-flatpak` package instead.)
+To change an app's permissions afterwards, open **System Settings** and search for **Flatpak**.
+The Flatpak permissions page lists every Flatpak app with switches for files, devices, network
+and more. For Snaps, `snap connections <app>` lists what an app may access, and `snap connect` and
+`snap disconnect` change it.
 
 ## Installing apps from the terminal
 
@@ -88,6 +82,19 @@ flatpak uninstall --unused                   # remove runtimes nothing uses anym
 ```
 
 The app IDs, like `com.spotify.Client`, are shown on [flathub.org](https://flathub.org){target="_blank"}.
+
+### Snap
+
+```bash
+snap find spotify            # find an app
+sudo snap install spotify    # install it
+snap list                    # list installed snaps
+sudo snap refresh            # update all snaps now (they also update on their own)
+sudo snap remove spotify     # remove an app
+```
+
+Some snaps, often developer tools, need `--classic` to install, for example
+`sudo snap install code --classic`. The Snap Store shows when an app needs it.
 
 ### APT
 
@@ -125,7 +132,11 @@ alternative first; the [app table](/switch-from-windows#apps) has suggestions. F
 programs and older games, **Bottles** (from Flathub) can run them with Wine. Steam runs many
 Windows games with Proton; turn on Steam Play in Steam's settings.
 
-## Snap packages
+## Flatpak or Snap?
 
-LeiOS uses Flatpak and doesn't set up Snap. Almost every app that is available as a Snap is also on
-Flathub. If you need a Snap-only app, you can install `snapd` from Debian.
+Both run apps in a sandbox and update them independently of the system. On LeiOS, **Flathub is the
+first choice**: it has the most desktop apps, and Flatpak apps fit best into KDE Plasma. Choose the
+Snap when an app is only in the Snap Store, or when the app maker recommends it.
+
+Snaps update themselves automatically in the background, a few times a day. Flatpak apps update
+when you install updates in Discover.

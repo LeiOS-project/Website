@@ -29,7 +29,7 @@ LeiOS.
 
 Plain Debian is a toolkit: after installing it, you choose and configure a lot yourself. LeiOS
 makes those choices for you: the KDE Plasma desktop with its own look, firmware, everyday apps,
-Firefox straight from Mozilla, Discover with Flatpak, compressed memory, and its own package
+Firefox straight from Mozilla, Discover with Flathub and the Snap Store, compressed memory, and its own package
 repository with continuous LeiOS releases.
 
 ### Is LeiOS a rolling release?
@@ -95,11 +95,11 @@ Windows malware can't run on LeiOS, and your software comes from signed, trusted
 updates regularly, install software through Discover, and don't run commands or scripts you don't
 understand.
 
-### Can I install `.deb` files and Snap packages?
+### Can I install Flatpaks, Snaps and `.deb` files?
 
-`.deb` files from trusted vendors, yes: they install like on Debian 13. Snap isn't set up; LeiOS
-uses Flatpak instead, which has almost every app that exists as a Snap. See
-[Installing Apps](/docs/usage/installing-apps#apps-from-websites).
+Yes. Discover installs apps from Flathub (Flatpak) and the Snap Store (Snap) out of the box, and
+prefers the Flathub version when an app is in both. `.deb` files from trusted vendors install like
+on Debian 13. See [Installing Apps](/docs/usage/installing-apps).
 
 ### Can I use a different desktop than KDE Plasma?
 

@@ -6,7 +6,7 @@ import { screenshots } from "~/data/screenshots";
 usePageSeo({
 	title: "Features - LeiOS",
 	description:
-		"A tour of LeiOS: the KDE Plasma desktop with the LeiOS look, preinstalled apps, Discover and Flathub, updates, performance tuning, security and developer tools.",
+		"A tour of LeiOS: the KDE Plasma desktop with the LeiOS look, preinstalled apps, Discover with Flathub and the Snap Store, updates, performance tuning, security and developer tools.",
 	ogImage: "https://www.leios.dev/static/og/leios-desktop.jpg",
 });
 
@@ -44,12 +44,12 @@ const sections: FeatureSection[] = [
 		eyebrow: "Apps",
 		title: "The apps you need, installed or one click away",
 		description:
-			"LeiOS comes with a full set of everyday apps. Anything else is in Discover, the built-in app store, which installs apps from Flathub and Debian without visiting a single download site.",
+			"LeiOS comes with a full set of everyday apps. Anything else is in Discover, the built-in app store, which installs apps from Flathub, the Snap Store and Debian without visiting a single download site.",
 		points: [
 			"Firefox and Firefox Developer Edition, straight from Mozilla and always current",
 			"LibreOffice Writer, Calc and Impress: opens and saves Word, Excel and PowerPoint files",
 			"KMail and KOrganizer for email and calendars, Okular for PDFs, Gwenview and GIMP for pictures",
-			"Spotify, Discord, Steam, VS Code, OBS, Zoom and thousands more from Flathub",
+			"Spotify, Discord, Steam, VS Code, OBS, Zoom and thousands more from Flathub and the Snap Store, ready to use",
 		],
 		link: { label: "How to install apps", to: "/docs/usage/installing-apps" },
 	},
@@ -152,8 +152,11 @@ const specs = [
 	{ label: "Kernel", value: "Debian's Linux 6.12 LTS kernel" },
 	{ label: "Desktop", value: "KDE Plasma 6 (Wayland, X11 session available)" },
 	{ label: "Installer", value: "Calamares" },
-	{ label: "Software", value: "APT (.deb) and Flatpak, with Discover as the app store" },
-	{ label: "Repositories", value: "Debian, the LeiOS repository, Mozilla (Firefox), Flathub" },
+	{ label: "Software", value: "APT (.deb), Flatpak and Snap, with Discover as the app store" },
+	{
+		label: "Repositories",
+		value: "Debian, the LeiOS repository, Mozilla (Firefox), Flathub, the Snap Store",
+	},
 	{ label: "Boot", value: "UEFI with Secure Boot, or BIOS" },
 	{ label: "Storage", value: "ext4 by default, Btrfs available, LUKS encryption" },
 	{ label: "Memory", value: "zram compressed swap" },

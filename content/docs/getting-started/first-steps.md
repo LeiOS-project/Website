@@ -1,6 +1,6 @@
 ---
 title: "First Steps"
-description: "What to do after installing LeiOS: get online, install updates, set up Flathub, install your apps and make the desktop yours."
+description: "What to do after installing LeiOS: get online, install updates, install your apps, bring your files and make the desktop yours."
 navigation:
   title: First Steps
 ---
@@ -38,22 +38,15 @@ From now on, Discover lets you know when updates are available. See
 Prefer the terminal? `sudo apt update && sudo apt full-upgrade` does the same for system packages.
 ::::
 
-## Add Flathub, the app store for Linux
-
-Most desktop apps, like Spotify, Discord, Steam or VS Code, come from **Flathub**. Turn it on once:
-open **Konsole** from the Application Launcher, paste this command and enter your password:
-
-```bash
-sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-```
-
-Close and reopen Discover. Flathub apps now appear next to the apps from Debian. See
-[Installing Apps](/docs/usage/installing-apps) for why Flathub is the recommended source.
-
 ## Install your apps
 
 LeiOS comes with Firefox, LibreOffice, an email client, a PDF viewer, GIMP and more. For anything
-else, open Discover, search for the app and click **Install**.
+else, open **Discover**, search for the app and click **Install**.
+
+Discover is ready out of the box with **Flathub** and the **Snap Store**, so apps like Spotify,
+Discord, Steam or VS Code are one click away. The first time you open it, Discover downloads the
+app catalogs, which can take a minute. See [Installing Apps](/docs/usage/installing-apps) for where
+apps come from and why Flathub is the recommended source.
 
 Moving from Windows? The [app table](/switch-from-windows#apps) shows what to use instead of your
 Windows programs.

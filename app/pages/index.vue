@@ -78,7 +78,7 @@ const features = [
 		icon: "i-lucide-store",
 		title: "An app store built in",
 		description:
-			"Discover installs apps with one click: Spotify, Discord, Steam, VS Code and thousands more from Flathub and Debian.",
+			"Discover installs apps with one click: Spotify, Discord, Steam, VS Code and thousands more from Flathub, the Snap Store and Debian.",
 	},
 	{
 		icon: "i-lucide-shield-check",

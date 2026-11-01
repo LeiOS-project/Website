@@ -85,20 +85,29 @@ If the output names a repository you added yourself, remove that repository from
 
 ## Apps
 
-### Discover shows no apps from Flathub
+### Discover shows no apps from Flathub or the Snap Store
 
-Flathub has to be turned on once:
+The first time Discover opens, it downloads the app catalogs; give it a minute and check your
+internet connection. If Flathub apps still don't appear, check that Flathub is set up:
+
+```bash
+flatpak remotes
+```
+
+If `flathub` isn't listed (for example on a system that was installed from an older LeiOS image),
+add it and reopen Discover:
 
 ```bash
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ```
 
-Then close and reopen Discover. See [Installing Apps](/docs/usage/installing-apps#setting-up-flathub).
+If Snap apps are missing, check that the Snap service runs with `snap version`. It prints a
+`snapd` version when everything is fine.
 
 ### A Flatpak app can't see my files or devices
 
-Flatpak apps run in a sandbox. Install **Flatseal** from Discover and give the app access to the
-folder or device it needs.
+Flatpak apps run in a sandbox. Open **System Settings**, search for **Flatpak**, and give the app
+access to the folder or device it needs.
 
 ### An app has frozen
 

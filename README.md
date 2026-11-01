@@ -54,7 +54,17 @@ frontmatter. To add a page:
 2. Register it in `app/data/docs.ts` (sidebar + prev/next).
 3. Add it to `public/static/utils/sitemap.xml`.
 
-`bun test` fails if these three get out of sync.
+`bun test` fails if these three get out of sync, or if an internal link or `#anchor` in the docs
+or pages points nowhere.
+
+## Site data
+
+- `app/data/release.ts`: the installer image on `/download` (version, date, URL, size, SHA-256).
+  Update it when a new image is published to the
+  [live-images package registry](https://git.leicraftmc.de/LeiOS/live/images/-/packages).
+- `app/data/screenshots.ts`: screenshots for the landing and features pages; the files are in
+  `public/static/screenshots/`.
+- `app/data/links.ts`: Discord, blog, git and Hub links used by the pages, header and footer.
 
 ## Structure
 

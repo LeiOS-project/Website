@@ -54,7 +54,20 @@ frontmatter. To add a page:
 2. Register it in `app/data/docs.ts` (sidebar + prev/next).
 3. Add it to `public/static/utils/sitemap.xml`.
 
-`bun test` fails if these three get out of sync.
+`bun test` fails if these three get out of sync, or if an internal link or `#anchor` in the docs
+or pages points nowhere.
+
+## Site data
+
+- `/download` offers the newest image in the
+  [live-images package registry](https://git.leicraftmc.de/LeiOS/live/images/-/packages): it reads
+  version, date, URL, size and SHA-256 from GitLab while the site is generated
+  (`app/utils/live-images.ts`, `useLatestImage`), so the static site makes no API calls at runtime.
+  The live-images pipeline triggers this project's pipeline on `main` after publishing an image. If
+  GitLab can't be reached, `bun run generate` fails instead of deploying a page without a download.
+- `app/data/screenshots.ts`: screenshots for the landing and features pages; the files are in
+  `public/static/screenshots/`.
+- `app/data/links.ts`: Discord, blog, git and Hub links used by the pages, header and footer.
 
 ## Structure
 

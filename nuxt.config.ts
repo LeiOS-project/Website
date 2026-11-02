@@ -93,6 +93,8 @@ export default defineNuxtConfig({
 			crawlLinks: true,
 			routes: ["/"],
 			ignore: ["/__nuxt_content/**"],
+			// A page that fails to render fails the build, e.g. /download when GitLab is unreachable.
+			failOnError: true,
 		},
 	},
 

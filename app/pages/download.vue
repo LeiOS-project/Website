@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import SectionHeader from "~/components/site/SectionHeader.vue";
 import { siteLinks } from "~/data/links";
-import { formatImageSize, latestImage } from "~/data/release";
+import { formatImageSize } from "~/utils/live-images";
+
+const image = await useLatestImage();
 
 usePageSeo({
 	title: "Download LeiOS",
-	description: `Download the free LeiOS installer image (${formatImageSize(latestImage.sizeBytes)}, 64-bit PC). Try LeiOS live from a USB stick and install it in a few clicks.`,
+	description: `Download the free LeiOS installer image (${formatImageSize(image.value.sizeBytes)}, 64-bit PC). Try LeiOS live from a USB stick and install it in a few clicks.`,
 	ogImage: "https://www.leios.dev/static/og/leios-desktop.jpg",
 });
 
@@ -15,10 +17,10 @@ const imageFacts = [
 	{ icon: "i-lucide-cpu", label: "64-bit PC (amd64)" },
 	{ icon: "i-lucide-layers", label: "Debian 13 base" },
 	{ icon: "i-lucide-monitor", label: "KDE Plasma 6" },
-	{ icon: "i-lucide-hard-drive", label: formatImageSize(latestImage.sizeBytes) },
+	{ icon: "i-lucide-hard-drive", label: formatImageSize(image.value.sizeBytes) },
 ];
 
-const builtOn = new Date(`${latestImage.date}T00:00:00Z`).toLocaleDateString("en-US", {
+const builtOn = new Date(`${image.value.date}T00:00:00Z`).toLocaleDateString("en-US", {
 	year: "numeric",
 	month: "long",
 	day: "numeric",
@@ -27,7 +29,7 @@ const builtOn = new Date(`${latestImage.date}T00:00:00Z`).toLocaleDateString("en
 
 async function copyChecksum() {
 	try {
-		await navigator.clipboard.writeText(latestImage.sha256);
+		await navigator.clipboard.writeText(image.value.sha256);
 		toast.add({ title: "Checksum copied", icon: "i-lucide-check", color: "success" });
 	} catch {
 		toast.add({
@@ -105,7 +107,7 @@ const steps = [
                             </div>
                             <div>
                                 <h2 class="text-2xl font-bold">LeiOS installer image</h2>
-                                <p class="text-slate-400">Version {{ latestImage.version }} · built {{ builtOn }}</p>
+                                <p class="text-slate-400">Version {{ image.version }} · built {{ builtOn }}</p>
                             </div>
                             <ul class="flex flex-wrap justify-center gap-2">
                                 <li v-for="fact in imageFacts" :key="fact.label">
@@ -115,7 +117,7 @@ const steps = [
                         </div>
 
                         <div class="flex flex-col justify-center gap-3 sm:flex-row">
-                            <UButton :to="latestImage.url" size="xl" color="primary" class="justify-center px-8" icon="i-lucide-download">
+                            <UButton :to="image.url" size="xl" color="primary" class="justify-center px-8" icon="i-lucide-download">
                                 Download ISO
                             </UButton>
                             <UButton to="/docs/getting-started/installation" size="xl" color="neutral" variant="outline" class="justify-center px-8" icon="i-lucide-book-open">
@@ -128,8 +130,8 @@ const steps = [
                                 <span class="text-sm font-medium text-slate-300">SHA-256 checksum</span>
                                 <UButton size="xs" color="neutral" variant="ghost" icon="i-lucide-copy" @click="copyChecksum">Copy</UButton>
                             </div>
-                            <code class="block break-all font-mono text-xs text-slate-400 sm:text-sm">{{ latestImage.sha256 }}</code>
-                            <p class="mt-2 text-xs text-slate-500">File: <span class="break-all font-mono">{{ latestImage.fileName }}</span></p>
+                            <code class="block break-all font-mono text-xs text-slate-400 sm:text-sm">{{ image.sha256 }}</code>
+                            <p class="mt-2 text-xs text-slate-500">File: <span class="break-all font-mono">{{ image.fileName }}</span></p>
                         </div>
 
                         <UAlert
